@@ -1,9 +1,11 @@
+const ALLOWED=new Set(["page_view","build_start","trip_built","play_trip","optimize_route","manual_reorder","remove_stop","copy_fix_prompt","recent_route_open","share_trip","share_visit","remix_trip","affiliate_click"]);
+
 export default async function handler(req,res){
   if(req.method!=="POST") return res.status(405).end();
 
   const body=req.body||{};
   const event=String(body.event||"").replace(/[^a-z0-9_:-]/gi,"").slice(0,64);
-  if(!event) return res.status(400).json({ok:false});
+  if(!event||!ALLOWED.has(event)) return res.status(400).json({ok:false});
 
   const clean=(value,max)=>String(value||"").replace(/[\u0000-\u001f\u007f]/g,"").slice(0,max);
   const session_id=clean(body.session_id,64)||null;
@@ -40,5 +42,6 @@ export default async function handler(req,res){
     }
   }
 
+  res.setHeader("Cache-Control","no-store");
   return res.status(204).end();
 }
