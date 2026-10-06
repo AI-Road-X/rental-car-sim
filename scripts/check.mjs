@@ -37,6 +37,9 @@ const case4=parser.parsePlan('Tokyo\nHakone\nTokyo');
 if(case4.length!==3) fail('return-to-city route was incorrectly deduplicated');
 const case5=parser.parsePlan('Day 3: Travel to Kyoto\n- Visit Fushimi Inari');
 if(!eq(case5.map(x=>x.name),['Kyoto','Fushimi Inari'])||!case5.every(x=>x.day===3)) fail('AI-style verb cleanup regression');
+const case6=parser.parsePlan('### **Day 2 — Kyoto**\n- **Check in at Gion**\n- [Kiyomizu-dera](https://example.com)\n- Osaka (2 nights)');
+if(!eq(case6.map(x=>x.name),['Kyoto','Gion','Kiyomizu-dera','Osaka'])) fail('markdown itinerary cleanup regression');
+if(!case6.every(x=>x.day===2)) fail('markdown day inheritance regression');
 if(parser.tripText(case1)!=='Day 1: Tokyo\nHakone\nDay 2: Kyoto\nOsaka') fail('day text reconstruction regression');
 
 
