@@ -75,3 +75,21 @@ The long-term asset is not the UI. It would be a growing corpus of:
 - booking-intent behavior after specific audit warnings.
 
 That data could eventually support a stronger executable-trip audit, but only after enough real usage exists.
+
+
+## Monetization implication
+
+Current competitors demonstrate two viable patterns:
+
+- broad planners can charge recurring subscriptions when they own ongoing trip management, collaboration, live place data, documents, alerts and AI usage;
+- itinerary-checking tools can remain free/no-sign-up when they are primarily acquisition or trust utilities.
+
+RouteRiff's current Stage-0 behavior is much closer to a **one-off pre-booking audit** than a daily planning workspace. That makes a subscription premature.
+
+The current commercial hypothesis is therefore:
+
+**Free itinerary critique → trust → corrected route → optional booking exits**
+
+Affiliate revenue fits this moment better than forcing an account or subscription before repeat usage is proven.
+
+A paid plan should only be considered if real users repeatedly return for saved trips, live verification, monitoring, collaboration or post-booking utilities. Until then, recurring billing would add friction before RouteRiff has recurring value.
