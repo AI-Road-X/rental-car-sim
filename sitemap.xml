@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tripremix.vercel.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://tripremix.vercel.app/chatgpt-itinerary-to-map/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://tripremix.vercel.app/travel-route-visualizer/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tripremix.vercel.app/itinerary-map-maker/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tripremix.vercel.app/trip-distance-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tripremix.vercel.app/trips/japan-7-days/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tripremix.vercel.app/trips/italy-7-days/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tripremix.vercel.app/trips/portugal-7-days/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tripremix.vercel.app/trips/euro-city-hop/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tripremix.vercel.app/privacy/</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://tripremix.vercel.app/terms/</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://tripremix.vercel.app/affiliate-disclosure/</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://routeriff.vercel.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://routeriff.vercel.app/chatgpt-itinerary-to-map/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://routeriff.vercel.app/travel-route-visualizer/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://routeriff.vercel.app/itinerary-map-maker/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://routeriff.vercel.app/trip-distance-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://routeriff.vercel.app/trips/japan-7-days/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://routeriff.vercel.app/trips/italy-7-days/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://routeriff.vercel.app/trips/portugal-7-days/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://routeriff.vercel.app/trips/euro-city-hop/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://routeriff.vercel.app/privacy/</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://routeriff.vercel.app/terms/</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://routeriff.vercel.app/affiliate-disclosure/</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
 </urlset>
