@@ -13,12 +13,16 @@ The MVP exists to test whether visual trips create enough value to be shared and
 - Production: https://routeriff.vercel.app
 - Browser-first, no account required
 - Route map + rough travel-load estimate
-- Route sanity warnings
+- Transparent route sanity warnings
+- Detected-day pace warnings
+- Manual reorder / remove
 - Middle-stop optimization
+- Copy-to-AI correction prompt
 - Animated playback
 - Share links with source attribution
 - Remix workflow
-- Affiliate booking exits
+- Context-ranked affiliate booking exits through a measured redirect router
+- Privacy-safe persistent event storage in Supabase
 - SEO tool pages and remixable starter trips
 
 ## Privacy-safe validation events
@@ -30,6 +34,10 @@ Events:
 - trip_built
 - play_trip
 - optimize_route
+- manual_reorder
+- remove_stop
+- copy_fix_prompt
+- recent_route_open
 - share_trip
 - share_visit
 - remix_trip
@@ -58,10 +66,10 @@ Validate visual route + share + remix.
 
 ### Stage 1
 Only after evidence:
-- stronger event storage/reporting
-- day-by-day parsing
-- richer route optimization
+- deeper day-by-day structure
+- richer route reasoning using real transport providers where justified
 - destination-aware affiliate deep links
+- experiment reporting on the persisted event funnel
 
 ### Stage 2
 Only after share/remix traction:
@@ -114,3 +122,6 @@ This avoids competing head-on with general AI trip generators, OTA search, or fu
 - Canonical MVP URL: https://routeriff.vercel.app
 - The old TripRemix alias is legacy only and should redirect to RouteRiff.
 - A paid custom domain is intentionally deferred until Stage 0 behavior is validated.
+
+## Event data boundary
+RouteRiff analytics stores coarse event names, an anonymous per-session ID, source label, request path, and small non-sensitive counters. It deliberately does not store itinerary text in the event table. The underlying table has RLS enabled; anonymous clients can insert but cannot select. Owner-facing aggregate views are not granted to anonymous or authenticated public roles.
