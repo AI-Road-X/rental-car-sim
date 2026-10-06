@@ -25,3 +25,20 @@ try{
 }
 
 if(process.exitCode) process.exit(process.exitCode);
+
+
+for(const file of ['api/event.js','api/go.js','api/health.js','api/share.js']){
+  const src=fs.readFileSync(file,'utf8').replace(/export\s+default\s+/g,'');
+  try{
+    new Function(src);
+    console.log('OK: '+file+' parses');
+  }catch(err){
+    console.error('FAIL: '+file+' syntax',err.message);
+    process.exitCode=1;
+  }
+}
+
+const eventApi=fs.readFileSync('api/event.js','utf8');
+assert(eventApi.includes('share_card'), 'share-card event is allowlisted');
+const shareApi=fs.readFileSync('api/share.js','utf8');
+assert(shareApi.includes('src","share"') || shareApi.includes('set("src","share")'), 'share endpoint returns to share-attributed route');
