@@ -9,6 +9,6 @@ export default function handler(req,res){
     const key=String(k).replace(/[^a-z0-9_:-]/gi,"").slice(0,32);
     if(["string","number","boolean"].includes(typeof v)) safe[key]=String(v).slice(0,64);
   }
-  console.log(JSON.stringify({kind:"tripremix_event",event,meta:safe,ts:new Date().toISOString()}));
+  console.log(JSON.stringify({kind:"routeriff_event",event,meta:safe,ts:new Date().toISOString()}));
   res.status(204).end();
 }
