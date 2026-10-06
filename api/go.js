@@ -42,7 +42,7 @@ export default async function handler(req,res){
     session_id:clean(req.query&&req.query.sid,64)||null,
     source:clean(req.query&&req.query.source,80)||null,
     path:"/api/go",
-    meta:{partner}
+    meta:{partner,score:clean(req.query&&req.query.score,4),verdict:clean(req.query&&req.query.verdict,32),edited:clean(req.query&&req.query.edited,5)}
   };
 
   console.log(JSON.stringify({kind:"routeriff_affiliate_redirect",...row,ts:new Date().toISOString()}));
