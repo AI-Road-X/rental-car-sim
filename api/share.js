@@ -5,6 +5,7 @@ export default function handler(req,res){
 
   const raw=String(req.query&&req.query.trip||"").slice(0,1200);
   const geo=String(req.query&&req.query.geo||"").slice(0,1200);
+  const ctry=String(req.query&&req.query.ctry||"").slice(0,1200);
   const days=String(req.query&&req.query.days||"").replace(/[^0-9]/g,"").slice(0,3);
   const stops=raw.split("|").map(x=>x.trim()).filter(Boolean).slice(0,12);
 
@@ -17,6 +18,7 @@ export default function handler(req,res){
   const dest=new URL("https://routeriff.vercel.app/");
   dest.searchParams.set("trip",stops.join("|"));
   if(geo) dest.searchParams.set("geo",geo);
+  if(ctry) dest.searchParams.set("ctry",ctry);
   if(days) dest.searchParams.set("days",days);
   dest.searchParams.set("src","share");
 
