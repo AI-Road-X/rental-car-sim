@@ -54,3 +54,12 @@ jobs:
           done
           echo "Production did not catch up within the verification window."
           exit 1
+
+
+      - name: Submit freshly deployed URLs to IndexNow
+        shell: bash
+        run: |
+          if [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$(date -u +%F)" != "2026-10-07" ]; then
+            exit 0
+          fi
+          python scripts/submit-indexnow.py
