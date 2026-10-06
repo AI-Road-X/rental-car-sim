@@ -33,3 +33,24 @@ jobs:
           fi
           git commit -m "Trigger RouteRiff production deploy after quota reset"
           git push origin HEAD:main
+
+      - name: Verify production catches up
+        if: github.event_name == 'workflow_dispatch' || success()
+        shell: bash
+        run: |
+          if [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$(date -u +%F)" != "2026-10-07" ]; then
+            exit 0
+          fi
+          EXPECTED="$(git rev-parse --short=12 HEAD)"
+          echo "Waiting for routeriff.vercel.app to report commit $EXPECTED"
+          for i in $(seq 1 12); do
+            BODY="$(curl -fsS --max-time 10 https://routeriff.vercel.app/api/health || true)"
+            echo "$BODY"
+            if printf "%s" "$BODY" | grep -q "$EXPECTED"; then
+              echo "Production is on the expected commit."
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "Production did not catch up within the verification window."
+          exit 1
