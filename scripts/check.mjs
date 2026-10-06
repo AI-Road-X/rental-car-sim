@@ -39,6 +39,24 @@ const case5=parser.parsePlan('Day 3: Travel to Kyoto\n- Visit Fushimi Inari');
 if(!eq(case5.map(x=>x.name),['Kyoto','Fushimi Inari'])||!case5.every(x=>x.day===3)) fail('AI-style verb cleanup regression');
 if(parser.tripText(case1)!=='Day 1: Tokyo\nHakone\nDay 2: Kyoto\nOsaka') fail('day text reconstruction regression');
 
+
+const geoStart=html.indexOf('function km(');
+const geoEnd=html.indexOf('async function geo(',geoStart);
+if(geoStart<0||geoEnd<0) fail('geometry functions not found in index.html');
+let geometry;
+try{
+  geometry=new Function(html.slice(geoStart,geoEnd)+'; return {km,routeGeometry};')();
+}catch(err){
+  fail('geometry extraction failed: '+err.message);
+}
+const tokyo={lat:35.6762,lon:139.6503},losAngeles={lat:34.0522,lon:-118.2437};
+const pacific=geometry.routeGeometry([tokyo,losAngeles]);
+const longs=pacific.all.map(p=>p[1]);
+if(Math.max(...longs)-Math.min(...longs)>150) fail('dateline route used the long way around the map');
+if(pacific.segments[0].length<30) fail('long-haul route is missing great-circle interpolation');
+const distance=geometry.km(tokyo,losAngeles);
+if(distance<8000||distance>9500) fail('haversine distance sanity check failed');
+
 const directAff=[
   'https://www.trip.com/t/',
   'https://affiliate.klook.com/redirect',
