@@ -15,6 +15,30 @@ for(const match of html.matchAll(scriptRe)){
   try{ new Function(js) }catch(err){ fail('inline JS syntax: '+err.message) }
 }
 
+
+const parserStart=html.indexOf('function cleanStop');
+const parserEnd=html.indexOf('function km(',parserStart);
+if(parserStart<0||parserEnd<0) fail('parser functions not found in index.html');
+let parser;
+try{
+  parser=new Function(html.slice(parserStart,parserEnd)+'; return {parsePlan,tripText};')();
+}catch(err){
+  fail('parser extraction failed: '+err.message);
+}
+const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const case1=parser.parsePlan('Day 1: Tokyo → Hakone\nDay 2: Kyoto\nOsaka');
+if(!eq(case1.map(x=>x.name),['Tokyo','Hakone','Kyoto','Osaka'])) fail('day parser names regression');
+if(!eq(case1.map(x=>x.day),[1,1,2,2])) fail('day parser assignments regression');
+const case2=parser.parsePlan('Paris, France\nRome, Italy');
+if(!eq(case2.map(x=>x.name),['Paris, France','Rome, Italy'])) fail('city-country comma parsing regression');
+const case3=parser.parsePlan('Tokyo, Kyoto, Osaka');
+if(!eq(case3.map(x=>x.name),['Tokyo','Kyoto','Osaka'])) fail('comma-list parsing regression');
+const case4=parser.parsePlan('Tokyo\nHakone\nTokyo');
+if(case4.length!==3) fail('return-to-city route was incorrectly deduplicated');
+const case5=parser.parsePlan('Day 3: Travel to Kyoto\n- Visit Fushimi Inari');
+if(!eq(case5.map(x=>x.name),['Kyoto','Fushimi Inari'])||!case5.every(x=>x.day===3)) fail('AI-style verb cleanup regression');
+if(parser.tripText(case1)!=='Day 1: Tokyo\nHakone\nDay 2: Kyoto\nOsaka') fail('day text reconstruction regression');
+
 const directAff=[
   'https://www.trip.com/t/',
   'https://affiliate.klook.com/redirect',
