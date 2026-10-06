@@ -1,6 +1,6 @@
 # TripRemix Lab
 
-**Live MVP:** https://tripremix-lab.vercel.app
+**Live MVP:** https://tripremix.vercel.app
 
 TripRemix turns a rough itinerary into a visual, playable and shareable trip.
 
