@@ -36,6 +36,7 @@ Supporting interaction events:
 - `manual_reorder`
 - `remove_stop`
 - `recent_route_open`
+- `share_card`
 
 ## CEO metrics
 For a selected period:
@@ -57,6 +58,7 @@ For a selected period:
 
 ### Distribution
 - share rate = shared / built_trip
+- share-card rate = shared_card / built_trip
 - share→remix rate = remixed sessions among sessions that arrived via share
 
 ### Commercial
