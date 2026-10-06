@@ -51,3 +51,5 @@ assert(eventApi.includes('audit_helpful') && eventApi.includes('audit_not_helpfu
 assert(eventApi.includes('booking_unlock'), 'booking unlock event is allowlisted');
 
 assert(eventApi.includes('copy_normalize_prompt'), 'normalize prompt event is allowlisted');
+
+assert(eventApi.includes('file_import'), 'file import event is allowlisted');
