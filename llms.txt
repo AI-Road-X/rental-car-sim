@@ -14,3 +14,26 @@ RouteRiff is a second-pass AI itinerary sanity checker, not a general travel cha
 
 ## Commercial disclosure
 Some optional booking exits are affiliate links. Affiliate economics do not change the route score or route-order logic.
+
+- https://routeriff.vercel.app/japan-itinerary-checker/
+- https://routeriff.vercel.app/china-itinerary-checker/
+- https://routeriff.vercel.app/google-maps-route-to-itinerary/
+- https://routeriff.vercel.app/examples/ai-itinerary-fails/
+
+## Input options
+- Plain-text lists, arrows, bullets and common AI itinerary lines.
+- Optional trip-day count for pacing context.
+- Local .txt, .md and common .csv itinerary imports; these files are read in the browser and are not uploaded by the importer.
+- Full Google Maps directions URLs and Apple Maps start/destination links.
+- Google Maps short links are expanded only through a restricted Google-host redirect resolver.
+
+## Current audit behaviors
+- Rough straight-line route distance and travel-load heuristic.
+- Very long-leg warnings.
+- Potential backtracking and largest-detour-stop detection.
+- Trip-day pacing warnings.
+- Cross-country hop warning when the route repeatedly changes country.
+- Manual reorder/remove, simple middle-stop optimizer and before/after comparison.
+- Model-agnostic cleanup prompt and correction prompt.
+- Shareable/remixable route URL and social share card.
+- Booking options are gated behind review when the route verdict still needs attention.
