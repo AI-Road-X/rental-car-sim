@@ -98,3 +98,6 @@ Every new feature must improve at least one of:
 5. Compounding asset
 
 Otherwise it waits.
+
+## Map/geocoding scaling gate
+The current MVP uses OpenStreetMap tiles and the public Nominatim geocoder only for user-triggered requests, with sequential requests and browser-side caching. This is acceptable only for a low-volume validation phase. Before meaningful promotion, paid traffic, or sustained concurrent usage, migrate geocoding to a commercial provider or self-hosted service and keep tile/geocoder endpoints replaceable. Do not add autocomplete, bulk geocoding, offline tile downloads, or background place crawling on the public OSM services.
