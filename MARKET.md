@@ -93,3 +93,38 @@ The current commercial hypothesis is therefore:
 Affiliate revenue fits this moment better than forcing an account or subscription before repeat usage is proven.
 
 A paid plan should only be considered if real users repeatedly return for saved trips, live verification, monitoring, collaboration or post-booking utilities. Until then, recurring billing would add friction before RouteRiff has recurring value.
+
+
+## 2026-10-07 checker-category update
+
+Fresh search results confirm that **AI itinerary checking is now a real category**, not a whitespace keyword.
+
+Additional competitors:
+- Journey Planner — markets a free AI itinerary checker with overall score, severity tags, pacing/routing/timing analysis, plus PDF/image/text upload.
+- TripSapien — date-aware ChatGPT itinerary checker with place matching, opening-hours/closure signals, booking guidance and neighborhood fit.
+- Spotinga — itinerary checker with real map travel times, day-by-day realism/fatigue/routing scoring, and specific fixes.
+- Japan Revisited — vertical Japan itinerary checker with transit logic, pacing, JR Pass math, seasonality, budget and a $19 rebuild upsell.
+- SuperTravel — free AI itinerary checker focused on scheduling, routing and time analysis.
+
+### Consequence
+
+RouteRiff should **not** position itself merely as "an AI itinerary checker." That phrase is commercially validated but crowded.
+
+The sharper wedge remains:
+
+**RouteRiff is the visual critic + correction loop for an itinerary the user already has.**
+
+Differentiating product behaviors to test:
+1. Visual route first, not a black-box AI report.
+2. Explicit criticism of the route skeleton ("this stop is the detour").
+3. Manual reorder/remove + simple transparent optimizer.
+4. Copyable correction prompt that sends the critique back to *any* AI model.
+5. Playable/shareable/remixable route artifact.
+6. Booking links deliberately gated behind review when the route still has warnings.
+7. Privacy-light MVP: itinerary text stays in the browser; funnel analytics store only coarse events.
+
+### New benchmark
+
+Competitors with real routing, live place data and date-aware checks are stronger on factual verification. RouteRiff must not imply equivalence until those data integrations exist.
+
+Stage-0 wins only if the **critic → fix → share/remix** loop creates behavior competitors' static reports do not.
