@@ -1,0 +1,60 @@
+name: Route audit missed something
+description: Report a route where RouteRiff's critique was wrong, weak or missed an obvious problem.
+title: "[Audit miss] "
+labels:
+  - audit-feedback
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve RouteRiff's route critic. Please do not include booking references, passport details, payment information, home addresses or other sensitive data.
+  - type: textarea
+    id: route
+    attributes:
+      label: Route stops
+      description: List only the cities or major stops needed to reproduce the route.
+      placeholder: |
+        Tokyo
+        Kyoto
+        Hakone
+        Osaka
+    validations:
+      required: true
+  - type: input
+    id: days
+    attributes:
+      label: Trip length
+      description: Optional number of days, if pacing was part of the problem.
+      placeholder: 7 days
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should RouteRiff have caught?
+      description: Explain the backtracking, transfer burden or other route-shape issue you expected it to flag.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What did RouteRiff say instead?
+      description: Include the score/verdict or warning text if useful.
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Main issue type
+      options:
+        - Backtracking / detour
+        - Long transfer
+        - Pacing / too much travel for the number of days
+        - Wrong place match / geocoding
+        - Optimizer suggested a worse order
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification
+      options:
+        - label: I understand RouteRiff is a planning heuristic and I checked the real transport/geography before reporting this.
+          required: true
