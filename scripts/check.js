@@ -56,3 +56,28 @@ assert(eventApi.includes('file_import'), 'file import event is allowlisted');
 
 const expandApi=fs.readFileSync('api/expand-map.js','utf8');
 assert(expandApi.includes('maps.app.goo.gl') && expandApi.includes('unsafe_redirect'), 'Google Maps short-link expander is host-restricted');
+
+
+const path=require('path');
+function walkHtml(dir){
+  const out=[];
+  for(const ent of fs.readdirSync(dir,{withFileTypes:true})){
+    if(['.git','node_modules','.github','api','scripts'].includes(ent.name)) continue;
+    const p=path.join(dir,ent.name);
+    if(ent.isDirectory()) out.push(...walkHtml(p));
+    else if(ent.isFile() && ent.name.endsWith('.html')) out.push(p);
+  }
+  return out;
+}
+
+for(const file of walkHtml('.')){
+  const src=fs.readFileSync(file,'utf8');
+  assert(!src.includes('TripRemix'), file+' has no legacy product name');
+  if(file==='404.html') continue;
+  const m=src.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i);
+  assert(Boolean(m), file+' has canonical URL');
+  if(m){
+    assert(m[1].startsWith('https://routeriff.vercel.app/'), file+' canonical uses RouteRiff host');
+    assert(sitemap.includes('<loc>'+m[1]+'</loc>') || file==='index.html', file+' canonical is represented in sitemap');
+  }
+}
