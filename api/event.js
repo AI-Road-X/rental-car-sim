@@ -1,4 +1,4 @@
-const ALLOWED=new Set(["page_view","build_start","trip_built","play_trip","optimize_route","manual_reorder","remove_stop","copy_fix_prompt","recent_route_open","share_trip","share_visit","remix_trip","affiliate_click","share_card","audit_helpful","audit_not_helpful","booking_unlock","copy_normalize_prompt"]);
+const ALLOWED=new Set(["page_view","build_start","trip_built","play_trip","optimize_route","manual_reorder","remove_stop","copy_fix_prompt","recent_route_open","share_trip","share_visit","remix_trip","affiliate_click","share_card","audit_helpful","audit_not_helpful","booking_unlock","copy_normalize_prompt","file_import"]);
 
 export default async function handler(req,res){
   if(req.method!=="POST") return res.status(405).end();
