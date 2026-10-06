@@ -39,6 +39,7 @@ Events:
 - copy_fix_prompt
 - recent_route_open
 - share_trip
+- share_card
 - share_visit
 - remix_trip
 - affiliate_click
