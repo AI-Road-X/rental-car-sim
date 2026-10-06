@@ -1,0 +1,32 @@
+name: RouteRiff production health
+on:
+  schedule:
+    - cron: "15 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check health endpoint
+        shell: bash
+        run: |
+          BODY="$(curl -fsS --max-time 15 https://routeriff.vercel.app/api/health)"
+          echo "$BODY"
+          printf "%s" "$BODY" | grep -q '"ok":true'
+          printf "%s" "$BODY" | grep -q '"service":"routeriff"'
+      - name: Check homepage
+        shell: bash
+        run: |
+          HTML="$(curl -fsSL --max-time 15 https://routeriff.vercel.app/)"
+          printf "%s" "$HTML" | grep -q 'RouteRiff'
+          printf "%s" "$HTML" | grep -q 'routeriff.vercel.app'
+      - name: Check sitemap
+        shell: bash
+        run: |
+          XML="$(curl -fsS --max-time 15 https://routeriff.vercel.app/sitemap.xml)"
+          printf "%s" "$XML" | grep -q 'https://routeriff.vercel.app/'
