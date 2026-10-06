@@ -1,1 +1,1 @@
-User-agent: *\nAllow: /\nSitemap: https://tripremix.vercel.app/sitemap.xml\n
+User-agent: *\nAllow: /\nSitemap: https://routeriff.vercel.app/sitemap.xml\n
