@@ -81,3 +81,9 @@ for(const file of walkHtml('.')){
     assert(sitemap.includes('<loc>'+m[1]+'</loc>') || file==='index.html', file+' canonical is represented in sitemap');
   }
 }
+
+
+const idRefs=[...html.matchAll(/\$\(['"]([^'"]+)['"]\)/g)].map(m=>m[1]);
+for(const id of [...new Set(idRefs)]){
+  assert(html.includes('id="'+id+'"') || html.includes("id='"+id+"'"), 'DOM id reference exists: '+id);
+}
