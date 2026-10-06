@@ -32,6 +32,9 @@ Anonymous users can insert events through the public application flow but cannot
 9. `affiliate_click`
 
 Supporting interaction events:
+- `file_import`
+- `copy_normalize_prompt`
+- `booking_unlock`
 - `audit_helpful`
 - `audit_not_helpful`
 - `optimize_route`
@@ -55,6 +58,7 @@ For a selected period:
 - play rate = sessions with play_trip / sessions with trip_built
 
 ### Utility
+- normalize prompt rate = copied_normalize_prompt / viewed
 - fix-prompt copy rate = copied_ai_fix / built_trip
 - audit helpful rate = audit_helpful / (audit_helpful + audit_not_helpful)
 - optimize/reorder/remove interaction rate
