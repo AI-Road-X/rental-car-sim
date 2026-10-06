@@ -1,7 +1,7 @@
-# TripRemix operating plan
+# RouteRiff operating plan
 
 ## Product thesis
-TripRemix is not a full OTA and not an AI itinerary chatbot.
+RouteRiff is not a full OTA and not an AI itinerary chatbot.
 
 It is a visual trip workflow:
 
@@ -10,7 +10,7 @@ It is a visual trip workflow:
 The MVP exists to test whether visual trips create enough value to be shared and remixed, and whether that behavior can produce booking intent.
 
 ## Current public product
-- Production: https://tripremix.vercel.app
+- Production: https://routeriff.vercel.app
 - Browser-first, no account required
 - Route map + rough travel-load estimate
 - Route sanity warnings
