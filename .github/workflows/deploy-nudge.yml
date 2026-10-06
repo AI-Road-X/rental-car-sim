@@ -1,0 +1,35 @@
+name: One-time RouteRiff deploy nudge
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  nudge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Trigger one production deploy after Vercel quota reset
+        shell: bash
+        run: |
+          if [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$(date -u +%F)" != "2026-10-07" ]; then
+            echo "Outside the one-time deploy date; nothing to do."
+            exit 0
+          fi
+          printf "RouteRiff production deploy nudge after Hobby quota reset.\nUTC: %s\n" "$(date -u +%FT%TZ)" > deploy-trigger.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add deploy-trigger.txt
+          if git diff --cached --quiet; then
+            echo "Deploy nudge already present; nothing to commit."
+            exit 0
+          fi
+          git commit -m "Trigger RouteRiff production deploy after quota reset"
+          git push origin HEAD:main
