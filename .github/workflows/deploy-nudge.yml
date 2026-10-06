@@ -2,7 +2,7 @@ name: One-time RouteRiff deploy nudge
 
 on:
   schedule:
-    - cron: "0 13 * * *"
+    - cron: "20 15 * * *"
   workflow_dispatch:
 
 permissions:
