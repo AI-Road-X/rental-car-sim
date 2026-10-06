@@ -27,7 +27,7 @@ try{
 if(process.exitCode) process.exit(process.exitCode);
 
 
-for(const file of ['api/event.js','api/go.js','api/health.js','api/share.js']){
+for(const file of ['api/event.js','api/go.js','api/health.js','api/share.js','api/expand-map.js']){
   const src=fs.readFileSync(file,'utf8').replace(/export\s+default\s+/g,'');
   try{
     new Function(src);
@@ -53,3 +53,6 @@ assert(eventApi.includes('booking_unlock'), 'booking unlock event is allowlisted
 assert(eventApi.includes('copy_normalize_prompt'), 'normalize prompt event is allowlisted');
 
 assert(eventApi.includes('file_import'), 'file import event is allowlisted');
+
+const expandApi=fs.readFileSync('api/expand-map.js','utf8');
+assert(expandApi.includes('maps.app.goo.gl') && expandApi.includes('unsafe_redirect'), 'Google Maps short-link expander is host-restricted');
