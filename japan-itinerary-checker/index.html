@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Japan Itinerary Checker — Catch Backtracking Before You Book | RouteRiff</title>
+<meta name="description" content="Paste the main cities from a Japan itinerary and sanity-check the route shape, travel load and backtracking before booking hotels or trains. Free, no account.">
+<link rel="canonical" href="https://routeriff.vercel.app/japan-itinerary-checker/">
+<meta property="og:title" content="Japan Itinerary Checker — RouteRiff">
+<meta property="og:description" content="AI planned Japan. RouteRiff checks the geography.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"RouteRiff Japan Itinerary Checker","url":"https://routeriff.vercel.app/japan-itinerary-checker/","applicationCategory":"TravelApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<style>body{margin:0;background:#07101d;color:#eef5ff;font:16px/1.65 system-ui,sans-serif}main,header,footer{max-width:920px;margin:auto;padding:0 20px}header{height:72px;display:flex;align-items:center}.brand{color:#eef5ff;text-decoration:none;font-weight:900}main{padding:64px 20px 90px}.ey{color:#72e6c0;font-size:11px;font-weight:900;letter-spacing:.15em}h1{font-size:clamp(42px,7vw,72px);line-height:1;letter-spacing:-.05em;margin:14px 0 22px}h2{font-size:28px;margin-top:44px}p,li{color:#b8c7d8}.cta{display:inline-block;margin:18px 0;background:#72e6c0;color:#06130f;text-decoration:none;border-radius:14px;padding:13px 17px;font-weight:900}.card{border:1px solid #ffffff18;background:#0e1928;border-radius:18px;padding:20px;margin:18px 0}.route{font-size:22px;font-weight:900}.bad{color:#ffb3aa}.good{color:#72e6c0}.note{font-size:12px;color:#93a6bd}footer{border-top:1px solid #ffffff18;padding-top:24px;padding-bottom:40px;color:#93a6bd;font-size:12px}</style>
+</head><body>
+<header><a class="brand" href="/">↗ RouteRiff</a></header>
+<main>
+<div class="ey">JAPAN ROUTE SANITY CHECK</div>
+<h1>Check the Japan route before you book the hotels.</h1>
+<p>Japan itineraries are especially easy to overpack because every city looks attractive in a list. RouteRiff does one narrow job: put the main stops on a map and make obvious geographic mistakes harder to miss.</p>
+<a class="cta" href="/?src=japan-itinerary-checker#builder">Check my Japan itinerary →</a>
+
+<div class="card"><div class="bad">Awkward example</div><div class="route">Tokyo → Kyoto → Hakone → Osaka</div><p>Hakone is much closer to Tokyo than Kyoto. Going to Kyoto first and then returning east toward Hakone creates a geographic reversal before heading west again.</p><a class="cta" href="/?trip=Tokyo%7CKyoto%7CHakone%7COsaka&src=japan-checker-bad">Stress-test this route →</a></div>
+
+<div class="card"><div class="good">Cleaner geographic skeleton</div><div class="route">Tokyo → Hakone → Kyoto → Osaka</div><p>This order moves more consistently west. It still needs real train, luggage, hotel and attraction checks before booking.</p><a class="cta" href="/?trip=Tokyo%7CHakone%7CKyoto%7COsaka&src=japan-checker-good">Open the cleaner version →</a></div>
+
+<h2>What RouteRiff checks</h2>
+<ul>
+<li>long jumps between cities;</li>
+<li>obvious backtracking and detour stops;</li>
+<li>rough travel load across the trip;</li>
+<li>overly travel-heavy pacing when day labels are present;</li>
+<li>whether a simpler stop order reduces straight-line travel.</li>
+</ul>
+
+<h2>What it does not check yet</h2>
+<p>RouteRiff is not a live Japan rail planner. It does not currently calculate exact Shinkansen times, JR Pass value, luggage-forwarding schedules, attraction opening hours, weather or current ticket inventory. Verify those with official sources and booking providers.</p>
+
+<h2>Best input</h2>
+<p>Paste the overnight cities or major transfer stops from ChatGPT, Claude, Gemini, a spreadsheet or your own notes. If your AI answer is long, RouteRiff can copy a cleanup prompt that asks the model to return only the major stops.</p>
+<a class="cta" href="/?src=japan-itinerary-checker-bottom#builder">Check a route free →</a>
+<p class="note">Planning estimates are directional signals, not live travel advice.</p>
+</main>
+<footer>RouteRiff Lab · AI planned it. RouteRiff pushes back.</footer>
+</body></html>
