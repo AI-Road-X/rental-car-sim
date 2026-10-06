@@ -47,3 +47,5 @@ assert(shareApi.includes('src","share"') || shareApi.includes('set("src","share"
 assert(Array.isArray(vercel.rewrites) && vercel.rewrites.some(x=>x.source==='/s' && x.destination=='/api/share'), 'dynamic share rewrite configured');
 assert(Array.isArray(vercel.redirects) && vercel.redirects.some(x=>x.has && x.has.some(h=>h.type==='host' && h.value==='tripremix.vercel.app')), 'legacy TripRemix host redirect configured');
 assert(eventApi.includes('audit_helpful') && eventApi.includes('audit_not_helpful'), 'audit feedback events are allowlisted');
+
+assert(eventApi.includes('booking_unlock'), 'booking unlock event is allowlisted');
