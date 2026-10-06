@@ -101,3 +101,16 @@ Otherwise it waits.
 
 ## Map/geocoding scaling gate
 The current MVP uses OpenStreetMap tiles and the public Nominatim geocoder only for user-triggered requests, with sequential requests and browser-side caching. This is acceptable only for a low-volume validation phase. Before meaningful promotion, paid traffic, or sustained concurrent usage, migrate geocoding to a commercial provider or self-hosted service and keep tile/geocoder endpoints replaceable. Do not add autocomplete, bulk geocoding, offline tile downloads, or background place crawling on the public OSM services.
+
+## Current wedge
+RouteRiff is deliberately narrower than a full travel planner. The current wedge is:
+
+**Take an itinerary the traveler already has → reveal the geographic shape → let them fix it → make it playable/shareable/remixable.**
+
+This avoids competing head-on with general AI trip generators, OTA search, or full collaborative planners. Playback and remix are distribution/engagement mechanics; the core utility is route sanity.
+
+## Brand and canonical
+- Working brand: **RouteRiff**
+- Canonical MVP URL: https://routeriff.vercel.app
+- The old TripRemix alias is legacy only and should redirect to RouteRiff.
+- A paid custom domain is intentionally deferred until Stage 0 behavior is validated.
