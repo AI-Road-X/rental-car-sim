@@ -87,3 +87,38 @@ const idRefs=[...html.matchAll(/\$\(['"]([^'"]+)['"]\)/g)].map(m=>m[1]);
 for(const id of [...new Set(idRefs)]){
   assert(html.includes('id="'+id+'"') || html.includes("id='"+id+"'"), 'DOM id reference exists: '+id);
 }
+
+
+// pure route logic tests
+const logicStart=html.indexOf('function countDays');
+const logicEnd=html.indexOf('async function geo');
+const optStart=html.indexOf('function optimizeOrder');
+const optEnd=html.indexOf('function optimize(){');
+const csvStart=html.indexOf('function parseCsvLine');
+const csvEnd=html.indexOf('async function importItineraryFile');
+assert(logicStart>=0&&logicEnd>logicStart&&optStart>=0&&optEnd>optStart, 'pure route functions are extractable');
+const pure=new Function(
+  html.slice(logicStart,logicEnd)+
+  html.slice(optStart,optEnd)+
+  (csvStart>=0&&csvEnd>csvStart?html.slice(csvStart,csvEnd):'')+
+  ';return {countDays,mapUrlStops,parse,km,optimizeOrder,'+
+  (csvStart>=0?'csvToStops':'csvToStops:undefined')+'};'
+)();
+
+assert(pure.countDays('Day 1: Tokyo\nDay 2: Kyoto\nDay 3: Osaka')===3, 'day labels are counted');
+assert(JSON.stringify(pure.parse('Paris, France\nBrussels, Belgium'))===JSON.stringify(['Paris, France','Brussels, Belgium']), 'city-country commas stay intact');
+assert(JSON.stringify(pure.mapUrlStops('https://www.google.com/maps/dir/Tokyo/Hakone/Kyoto/Osaka/'))===JSON.stringify(['Tokyo','Hakone','Kyoto','Osaka']), 'Google Maps directions URL is parsed');
+if(pure.csvToStops){
+  assert(JSON.stringify(pure.csvToStops('Day,City\n1,Tokyo\n2,Kyoto\n3,Osaka'))===JSON.stringify(['Tokyo','Kyoto','Osaka']), 'CSV city column is parsed');
+}
+const pts={
+  Tokyo:{name:'Tokyo',lat:35.6762,lon:139.6503},
+  Kyoto:{name:'Kyoto',lat:35.0116,lon:135.7681},
+  Hakone:{name:'Hakone',lat:35.2324,lon:139.1070},
+  Osaka:{name:'Osaka',lat:34.6937,lon:135.5023}
+};
+const bad=[pts.Tokyo,pts.Kyoto,pts.Hakone,pts.Osaka];
+const improved=pure.optimizeOrder(bad);
+const pathKm=P=>P.slice(0,-1).reduce((n,p,i)=>n+pure.km(p,P[i+1]),0);
+assert(pathKm(improved)<pathKm(bad), 'optimizer improves the Tokyo-Kyoto-Hakone-Osaka stress route');
+assert(improved[0].name==='Tokyo'&&improved[improved.length-1].name==='Osaka', 'optimizer preserves start and finish');
