@@ -1,0 +1,35 @@
+name: Submit RouteRiff to IndexNow
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "sitemap.xml"
+      - "robots.txt"
+      - "llms.txt"
+      - "ai-itinerary-critic/**"
+      - "ai-itinerary-checker/**"
+      - "chatgpt-itinerary-to-map/**"
+      - "optimize-travel-itinerary-route/**"
+      - "travel-route-visualizer/**"
+      - "itinerary-map-maker/**"
+      - "trip-distance-calculator/**"
+      - "trips/**"
+      - "examples/**"
+      - "b84303762a345adc3028979f3d746106.txt"
+      - "scripts/submit-indexnow.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait briefly for Vercel production deploy
+        run: sleep 45
+      - name: Submit sitemap URLs to IndexNow
+        run: python scripts/submit-indexnow.py
