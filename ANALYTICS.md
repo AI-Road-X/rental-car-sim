@@ -32,6 +32,8 @@ Anonymous users can insert events through the public application flow but cannot
 9. `affiliate_click`
 
 Supporting interaction events:
+- `audit_helpful`
+- `audit_not_helpful`
 - `optimize_route`
 - `manual_reorder`
 - `remove_stop`
@@ -54,6 +56,7 @@ For a selected period:
 
 ### Utility
 - fix-prompt copy rate = copied_ai_fix / built_trip
+- audit helpful rate = audit_helpful / (audit_helpful + audit_not_helpful)
 - optimize/reorder/remove interaction rate
 
 ### Distribution
