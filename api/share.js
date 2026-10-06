@@ -7,13 +7,17 @@ export default function handler(req,res){
   const geo=String(req.query&&req.query.geo||"").slice(0,1200);
   const ctry=String(req.query&&req.query.ctry||"").slice(0,1200);
   const days=String(req.query&&req.query.days||"").replace(/[^0-9]/g,"").slice(0,3);
+  const scoreRaw=Number(req.query&&req.query.score);
+  const score=Number.isFinite(scoreRaw)?Math.max(0,Math.min(100,Math.round(scoreRaw))):null;
+  const verdictRaw=String(req.query&&req.query.verdict||"").slice(0,40);
+  const verdict=["Looks reasonable","Needs a second look","Rework before booking"].includes(verdictRaw)?verdictRaw:"";
   const stops=raw.split("|").map(x=>x.trim()).filter(Boolean).slice(0,12);
 
   if(stops.length<2) return res.redirect(302,"https://routeriff.vercel.app/");
 
   const start=stops[0], end=stops[stops.length-1];
   const title=`${start} → ${end} · RouteRiff`;
-  const desc=`${stops.length}-stop trip${days?" · "+days+" days":""}. See the route, play it, sanity-check it and remix it.`;
+  const desc=`${stops.length}-stop trip${days?" · "+days+" days":""}${score!==null?" · Route sanity "+score+"/100":""}${verdict?" · "+verdict:""}. Open the route, inspect the critique and remix it.`;
 
   const dest=new URL("https://routeriff.vercel.app/");
   dest.searchParams.set("trip",stops.join("|"));
