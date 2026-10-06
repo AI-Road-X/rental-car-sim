@@ -1,8 +1,8 @@
-# TripRemix Lab
+# RouteRiff Lab
 
-**Live MVP:** https://tripremix.vercel.app
+**Live MVP:** https://routeriff.vercel.app
 
-TripRemix turns a rough itinerary into a visual, playable and shareable trip.
+RouteRiff turns a rough itinerary into a visual, playable and shareable trip.
 
 ## Core loop
 **Paste → See → Fix → Play → Share → Remix → Book**
@@ -40,4 +40,4 @@ Static browser-first MVP on Vercel. Geocoding uses OpenStreetMap Nominatim on ex
 4. Public trip pages + remix graph
 5. Post-trip photos/video → travel story
 
-> Repository name is temporary; the product codename is TripRemix.
+> Repository name is temporary; the product codename is RouteRiff.
