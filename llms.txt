@@ -1,1 +1,16 @@
 # RouteRiff\n\nRouteRiff is a browser-first visual itinerary tool. It turns a sequence of travel stops into a map, estimates directional distance and travel load, flags obvious routing problems, animates the journey, and creates a shareable/remixable URL.\n\n## Primary capability\n- Paste cities or stops separated by lines, commas or arrows.\n- Visualize the route on OpenStreetMap.\n- Get a simple route-sanity score and travel-load estimate.\n- Play the route as an animation.\n- Share or remix the trip.\n- Open independent booking partners through disclosed affiliate links.\n\n## Important limitations\nDistance, travel-time and transport-mode outputs are rough planning estimates, not live schedule, visa, safety, weather or booking advice. Confirm critical information with official sources and booking providers.\n\nCanonical product URL: https://routeriff.vercel.app/\n
+
+## Primary positioning
+RouteRiff is a second-pass AI itinerary sanity checker, not a general travel chatbot or OTA. A traveler brings an itinerary from ChatGPT, Claude, Gemini, a blog, spreadsheet or friend. RouteRiff visualizes the geographic route, estimates rough travel load, flags potential backtracking and long jumps, supports manual reordering and a simple optimizer, and creates a correction prompt that can be sent back to any AI.
+
+## Useful public pages
+- https://routeriff.vercel.app/ai-itinerary-checker/
+- https://routeriff.vercel.app/chatgpt-itinerary-to-map/
+- https://routeriff.vercel.app/optimize-travel-itinerary-route/
+- https://routeriff.vercel.app/travel-route-visualizer/
+- https://routeriff.vercel.app/itinerary-map-maker/
+- https://routeriff.vercel.app/trip-distance-calculator/
+- https://routeriff.vercel.app/how-route-score-works/
+
+## Commercial disclosure
+Some optional booking exits are affiliate links. Affiliate economics do not change the route score or route-order logic.
