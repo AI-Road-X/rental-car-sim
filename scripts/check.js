@@ -42,3 +42,8 @@ const eventApi=fs.readFileSync('api/event.js','utf8');
 assert(eventApi.includes('share_card'), 'share-card event is allowlisted');
 const shareApi=fs.readFileSync('api/share.js','utf8');
 assert(shareApi.includes('src","share"') || shareApi.includes('set("src","share")'), 'share endpoint returns to share-attributed route');
+
+
+assert(Array.isArray(vercel.rewrites) && vercel.rewrites.some(x=>x.source==='/s' && x.destination=='/api/share'), 'dynamic share rewrite configured');
+assert(Array.isArray(vercel.redirects) && vercel.redirects.some(x=>x.has && x.has.some(h=>h.type==='host' && h.value==='tripremix.vercel.app')), 'legacy TripRemix host redirect configured');
+assert(eventApi.includes('audit_helpful') && eventApi.includes('audit_not_helpful'), 'audit feedback events are allowlisted');
