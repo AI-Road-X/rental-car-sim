@@ -12,6 +12,7 @@
   <url><loc>https://routeriff.vercel.app/trips/italy-7-days/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://routeriff.vercel.app/trips/portugal-7-days/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://routeriff.vercel.app/trips/euro-city-hop/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://routeriff.vercel.app/how-route-score-works/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://routeriff.vercel.app/about/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://routeriff.vercel.app/privacy/</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <url><loc>https://routeriff.vercel.app/terms/</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
