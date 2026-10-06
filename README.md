@@ -20,6 +20,7 @@ The first release intentionally does **not** try to be a full OTA or all-in-one 
 - Copyable correction prompt for ChatGPT, Claude, Gemini or another AI
 - Animated trip playback
 - Shareable trip URLs with embedded coordinates to reduce repeated geocoding
+- Social share-card export for image-first channels
 - Share → Remix conversion banner
 - Local recent-route retention
 - Contextual affiliate booking exits
