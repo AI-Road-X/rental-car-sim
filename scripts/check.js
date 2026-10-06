@@ -49,3 +49,5 @@ assert(Array.isArray(vercel.redirects) && vercel.redirects.some(x=>x.has && x.ha
 assert(eventApi.includes('audit_helpful') && eventApi.includes('audit_not_helpful'), 'audit feedback events are allowlisted');
 
 assert(eventApi.includes('booking_unlock'), 'booking unlock event is allowlisted');
+
+assert(eventApi.includes('copy_normalize_prompt'), 'normalize prompt event is allowlisted');
