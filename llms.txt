@@ -37,3 +37,5 @@ Some optional booking exits are affiliate links. Affiliate economics do not chan
 - Model-agnostic cleanup prompt and correction prompt.
 - Shareable/remixable route URL and social share card.
 - Booking options are gated behind review when the route verdict still needs attention.
+
+- https://routeriff.vercel.app/is-my-itinerary-too-rushed/
