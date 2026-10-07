@@ -27,7 +27,7 @@ try{
 if(process.exitCode) process.exit(process.exitCode);
 
 
-for(const file of ['api/event.js','api/go.js','api/health.js','api/share.js','api/expand-map.js']){
+for(const file of ['api/event.js','api/go.js','api/health.js','api/share.js','api/expand-map.js','api/audit.js']){
   const src=fs.readFileSync(file,'utf8').replace(/export\s+default\s+/g,'');
   try{
     new Function(src);
@@ -122,3 +122,30 @@ const improved=pure.optimizeOrder(bad);
 const pathKm=P=>P.slice(0,-1).reduce((n,p,i)=>n+pure.km(p,P[i+1]),0);
 assert(pathKm(improved)<pathKm(bad), 'optimizer improves the Tokyo-Kyoto-Hakone-Osaka stress route');
 assert(improved[0].name==='Tokyo'&&improved[improved.length-1].name==='Osaka', 'optimizer preserves start and finish');
+
+
+// agent discovery artifacts
+const crypto=require('crypto');
+const openapi=JSON.parse(fs.readFileSync('openapi.json','utf8'));
+assert(openapi.openapi==='3.1.0' && openapi.paths && openapi.paths['/api/audit'], 'OpenAPI describes the real route-audit endpoint');
+const apiCatalog=JSON.parse(fs.readFileSync('.well-known/api-catalog','utf8'));
+assert(Array.isArray(apiCatalog.linkset) && apiCatalog.linkset[0]?.['service-desc']?.[0]?.href==='https://routeriff.vercel.app/openapi.json', 'API catalog points to OpenAPI');
+const ard=JSON.parse(fs.readFileSync('.well-known/ai-catalog.json','utf8'));
+assert(Array.isArray(ard.entries) && ard.entries.length>=2, 'AI resource manifest has real entries');
+const skillBytes=fs.readFileSync('ai/skills/route-audit/SKILL.md');
+const skillDigest='sha256:'+crypto.createHash('sha256').update(skillBytes).digest('hex');
+const skillIndex=JSON.parse(fs.readFileSync('.well-known/agent-skills/index.json','utf8'));
+assert(skillIndex.skills?.[0]?.digest===skillDigest, 'Agent skill digest matches served bytes');
+assert(fs.readFileSync('ai/index.ilang','utf8').includes('::ILANG::COMPLETE::'), 'I-Lang agent instructions are complete');
+
+const auditSrc=fs.readFileSync('api/audit.js','utf8').replace(/export\s+default\s+function\s+handler/,'function handler');
+const auditCore=new Function(auditSrc+';return {analyze,normalizePoint};')();
+const auditPts=[
+  {name:'Tokyo',lat:35.6762,lon:139.6503},
+  {name:'Kyoto',lat:35.0116,lon:135.7681},
+  {name:'Hakone',lat:35.2324,lon:139.1070},
+  {name:'Osaka',lat:34.6937,lon:135.5023}
+].map(auditCore.normalizePoint);
+const auditResult=auditCore.analyze(auditPts,7);
+assert(auditResult.backtracking_flags>0 || auditResult.largest_detour, 'public audit API flags the Japan stress route');
+assert(['Looks reasonable','Needs a second look','Rework before booking'].includes(auditResult.verdict), 'public audit API returns a bounded verdict');
