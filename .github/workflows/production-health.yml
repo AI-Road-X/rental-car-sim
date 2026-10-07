@@ -62,6 +62,12 @@ jobs:
           grep -q '^# RouteRiff' /tmp/home.md
           grep -q 'Public route-audit API' /tmp/home.md
 
+      - name: Check exact route-order landing pages
+        shell: bash
+        run: |
+          curl -fsS --max-time 15 https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order/ | grep -q 'Tokyo → Hakone → Kyoto → Osaka'
+          curl -fsS --max-time 15 https://routeriff.vercel.app/beijing-xian-chengdu-shanghai-best-order/ | grep -q 'Beijing → Xi’an → Chengdu → Shanghai'
+
       - name: Check agent discovery resources
         shell: bash
         run: |
