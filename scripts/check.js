@@ -163,3 +163,8 @@ const robots=fs.readFileSync('robots.txt','utf8');
 assert(robots.includes('Content-Signal: search=yes, ai-input=yes, ai-train=no'), 'robots.txt publishes Content-Signal policy');
 const genericHeaders=(vercel.headers||[]).find(x=>x.source==='/(.*)')?.headers||[];
 assert(genericHeaders.some(h=>String(h.key).toLowerCase()==='content-signal'&&String(h.value)==='search=yes, ai-input=yes, ai-train=no'), 'HTTP responses publish the same Content-Signal policy');
+
+
+assert(html.includes("document.modelContext") && html.includes("typeof mc.registerTool!=='function'"), 'WebMCP page tools are feature-detected');
+assert(html.includes("routeriff.get_current_audit") && html.includes("routeriff.load_route"), 'WebMCP exposes real RouteRiff page tools');
+assert(html.includes("window.addEventListener('pagehide',()=>ctl.abort()"), 'WebMCP registrations have lifecycle cleanup');
