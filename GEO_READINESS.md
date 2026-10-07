@@ -6,6 +6,7 @@ This document records truthful implementation state. It is **not** a claim of a 
 
 ## Implemented and deployed
 
+- Homepage `Accept: text/markdown` content negotiation with `Vary: Accept`
 - Canonical HTTPS site on `routeriff.vercel.app`
 - robots.txt
 - sitemap.xml
@@ -49,7 +50,6 @@ The endpoint is read-only.
 
 ## Not implemented / not claimed
 
-- Homepage `Accept: text/markdown` content negotiation
 - DNS-AID records — the canonical production host is a provider-owned `vercel.app` subdomain and the project does not control authoritative DNS for `vercel.app`
 - MCP server / MCP Server Card
 - WebMCP browser tool registration
@@ -66,6 +66,4 @@ The current agent-readiness scanner was reviewed from its public current UI, but
 
 ## Next useful GEO work
 
-Only continue protocol work if it improves real agent use or a current default-scored check. The highest-value remaining candidate is meaningful Markdown negotiation on the actual homepage without degrading ordinary HTML caching.
-
-Do not add fake OAuth, fake MCP or commerce declarations solely to increase a score.
+Only continue protocol work if it improves real agent use or a current default-scored check. The next protocol work should be selected only after a fresh default-profile scan identifies a real scored gap. Do not add fake OAuth, fake MCP or commerce declarations solely to increase a score.
