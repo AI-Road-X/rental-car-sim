@@ -48,3 +48,5 @@ Some optional booking exits are affiliate links. Affiliate economics do not chan
 - https://routeriff.vercel.app/.well-known/agent-skills/index.json
 - https://routeriff.vercel.app/ai/skills/route-audit/SKILL.md
 - https://routeriff.vercel.app/ai/index.ilang
+
+- https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order/
