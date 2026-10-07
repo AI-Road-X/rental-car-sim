@@ -1,7 +1,16 @@
-const ALLOWED=new Set(["page_view","build_start","trip_built","play_trip","optimize_route","manual_reorder","remove_stop","copy_fix_prompt","recent_route_open","share_trip","share_visit","remix_trip","affiliate_click","share_card","audit_helpful","audit_not_helpful","booking_unlock","copy_normalize_prompt","file_import","copy_audit_summary"]);
+const ALLOWED=new Set(["page_view","builder_engaged","build_start","trip_built","play_trip","optimize_route","manual_reorder","remove_stop","copy_fix_prompt","recent_route_open","share_trip","share_visit","remix_trip","affiliate_click","share_card","audit_helpful","audit_not_helpful","booking_unlock","copy_normalize_prompt","file_import","copy_audit_summary"]);
+
+const BOT_UA=/(?:bot|crawler|spider|slurp|preview|facebookexternalhit|twitterbot|linkedinbot|discordbot|slackbot|telegrambot|whatsapp|curl|wget|python-requests|headless|lighthouse|pagespeed|google-inspectiontool|bingpreview)/i;
 
 export default async function handler(req,res){
   if(req.method!=="POST") return res.status(405).end();
+
+  const ua=String(req.headers&&req.headers["user-agent"]||"");
+  const purpose=String(req.headers&&(req.headers["sec-purpose"]||req.headers["purpose"])||"");
+  if(BOT_UA.test(ua)||/(?:prefetch|preview)/i.test(purpose)){
+    res.setHeader("Cache-Control","no-store");
+    return res.status(204).end();
+  }
 
   const body=req.body||{};
   const event=String(body.event||"").replace(/[^a-z0-9_:-]/gi,"").slice(0,64);

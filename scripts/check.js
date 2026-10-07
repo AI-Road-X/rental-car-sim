@@ -168,3 +168,7 @@ assert(html.includes("routeriff.get_current_audit") && html.includes("routeriff.
 assert(html.includes("window.addEventListener('pagehide',()=>ctl.abort()"), 'WebMCP registrations have lifecycle cleanup');
 
 assert(eventApi.includes('copy_audit_summary'), 'audit summary copy event is allowlisted');
+
+assert(eventApi.includes('builder_engaged'), 'builder engagement event is allowlisted');
+assert(eventApi.includes('BOT_UA') && eventApi.includes('prefetch'), 'event API filters obvious bots and prefetches');
+assert(html.includes("function markBuilderEngaged()") && html.includes("track('builder_engaged'"), 'builder engagement diagnostic is wired in the UI');
