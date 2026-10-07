@@ -189,3 +189,18 @@ Primary questions:
 7. Do corrected/reviewed routes create booking intent?
 
 If those signals stay weak after meaningful targeted traffic, change the wedge before building a larger travel platform.
+
+
+## Deployment hygiene — 2026-10-07
+
+The Vercel Hobby project hit its daily API deployment limit after many small validation commits. The public production deployment remains healthy, but the newest repository changes are waiting for the quota window to reset.
+
+Mitigations now in place:
+- Preview deployments disabled for this project.
+- Vercel Ignored Build Step points to `.vercel-ignore.sh`.
+- Documentation / research-only commits are skipped by Vercel.
+- Product/runtime/discovery changes still trigger production builds.
+- A one-time deploy nudge is scheduled for 2026-10-08 after the rolling quota reset window.
+- Core production health remains blocking; experimental Markdown content-negotiation verification is temporarily non-blocking until production catches up.
+
+Do not manually spam deployments. Preserve the daily deployment budget for real product changes.
