@@ -175,3 +175,6 @@ assert(html.includes("function markBuilderEngaged()") && html.includes("track('b
 
 assert(html.includes('function isSampleStops(S)') && html.includes('sample=isSampleStops(S)'), 'sample routes are tagged separately from custom itinerary builds');
 assert(html.includes('id="heroCheck"') && html.includes("$('heroCheck').onclick"), 'hero activation CTA is wired to the builder');
+
+const landingAnalytics=fs.readFileSync('analytics.js','utf8');
+assert(landingAnalytics.includes("event:'page_view'") && landingAnalytics.includes("surface:'landing'"), 'first-party landing analytics client is present');
