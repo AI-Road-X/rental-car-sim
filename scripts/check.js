@@ -168,3 +168,5 @@ assert(genericHeaders.some(h=>String(h.key).toLowerCase()==='content-signal'&&St
 assert(html.includes("document.modelContext") && html.includes("typeof mc.registerTool!=='function'"), 'WebMCP page tools are feature-detected');
 assert(html.includes("routeriff.get_current_audit") && html.includes("routeriff.load_route"), 'WebMCP exposes real RouteRiff page tools');
 assert(html.includes("window.addEventListener('pagehide',()=>ctl.abort()"), 'WebMCP registrations have lifecycle cleanup');
+
+assert(eventApi.includes('copy_audit_summary'), 'audit summary copy event is allowlisted');
