@@ -129,3 +129,20 @@ Interpretation:
 - low engagement → landing-page promise / CTA / audience mismatch;
 - healthy engagement but low build start → input UX or example/default-route problem;
 - healthy build start but low completion → geocoding/parser/product reliability problem.
+
+
+## Landing-page attribution
+
+High-intent acquisition and starter pages load the first-party `/analytics.js` client. It uses the same anonymous session ID as the main product and sends only:
+- `page_view`
+- source/referrer label
+- page path
+- `surface=landing`
+
+Obvious bots, preview fetchers, prefetches, Lighthouse and PageSpeed traffic are filtered server-side by `/api/event`.
+
+Owner-only attribution views:
+- `routeriff_session_attribution` — existing session funnel plus first-touch source and landing path
+- `routeriff_validation_acquisition_funnel` — clean Stage-0 conversion by first source + landing page
+
+This closes the previous blind spot where a visitor could land on an SEO utility page, read it, and leave without ever reaching the homepage event tracker.
