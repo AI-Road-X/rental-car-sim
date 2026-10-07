@@ -48,6 +48,10 @@ jobs:
         shell: bash
         run: |
           curl -fsS -D /tmp/headers -H 'Accept: text/markdown' --max-time 15 https://routeriff.vercel.app/ -o /tmp/home.md
+          echo '--- RESPONSE HEADERS ---'
+          cat /tmp/headers
+          echo '--- MARKDOWN HEAD ---'
+          head -n 24 /tmp/home.md
           grep -qi '^content-type: text/markdown' /tmp/headers
           grep -qi '^vary:.*Accept' /tmp/headers
           grep -q '^# RouteRiff' /tmp/home.md
