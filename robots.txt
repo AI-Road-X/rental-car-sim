@@ -1,1 +1,9 @@
-User-agent: *\nAllow: /\nSitemap: https://routeriff.vercel.app/sitemap.xml\n
+# RouteRiff public discovery policy
+# Search indexing and user-requested AI grounding are allowed.
+# Model training is not permitted under this Content Signals policy.
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+Sitemap: https://routeriff.vercel.app/sitemap.xml
