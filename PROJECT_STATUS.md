@@ -90,6 +90,7 @@ Privacy-safe event funnel includes:
 - copy_fix_prompt
 - audit_helpful / audit_not_helpful
 - share_trip / share_card / share_visit
+- copy_audit_summary
 - remix_trip
 - booking_unlock
 - affiliate_click
@@ -108,6 +109,8 @@ Stage-0 validation target remains **500 targeted visits** before any major archi
 Published external articles:
 - https://speedrun24.com/ai-travel-itinerary-sanity-check-routeriff/
 - https://speedrun24.com/ai-japan-itinerary-backtracking-check/
+- https://speedrun24.com/google-maps-route-itinerary-sanity-check/
+- https://speedrun24.com/is-my-travel-itinerary-too-rushed/
 - https://mattchinaguide.com/check-ai-china-itinerary-route/
 
 RouteRiff acquisition / utility pages include:
@@ -117,6 +120,7 @@ RouteRiff acquisition / utility pages include:
 - /japan-itinerary-checker/
 - /china-itinerary-checker/
 - /google-maps-route-to-itinerary/
+- /is-my-itinerary-too-rushed/
 - /optimize-travel-itinerary-route/
 - /travel-route-visualizer/
 - /itinerary-map-maker/
