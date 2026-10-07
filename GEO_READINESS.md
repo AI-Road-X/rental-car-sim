@@ -6,6 +6,7 @@ This document records truthful implementation state. It is **not** a claim of a 
 
 ## Implemented and deployed
 
+- Content Signals policy: `search=yes, ai-input=yes, ai-train=no` in robots.txt and HTTP response headers
 - Homepage `Accept: text/markdown` content negotiation with `Vary: Accept`
 - Canonical HTTPS site on `routeriff.vercel.app`
 - robots.txt
