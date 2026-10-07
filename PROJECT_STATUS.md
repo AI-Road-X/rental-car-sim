@@ -117,6 +117,7 @@ Published external articles:
 - https://speedrun24.com/google-maps-route-itinerary-sanity-check/
 - https://speedrun24.com/is-my-travel-itinerary-too-rushed/
 - https://speedrun24.com/check-ai-travel-itinerary-backtracking/
+- https://speedrun24.com/tokyo-hakone-kyoto-osaka-best-route-order/
 - https://mattchinaguide.com/check-ai-china-itinerary-route/
 - https://mattchinaguide.com/beijing-xian-chengdu-shanghai-best-route-order/
 
@@ -128,6 +129,7 @@ RouteRiff acquisition / utility pages include:
 - /china-itinerary-checker/
 - /google-maps-route-to-itinerary/
 - /is-my-itinerary-too-rushed/
+- /tokyo-hakone-kyoto-osaka-best-order/
 - /optimize-travel-itinerary-route/
 - /travel-route-visualizer/
 - /itinerary-map-maker/
@@ -244,3 +246,26 @@ From this point:
 - historical views are retained for debugging only.
 
 Baseline counts began at zero. Do not interpret the earlier 16 page views as evidence of product-market behavior.
+
+
+## Owned-site contextual distribution — 2026-10-07
+
+The acquisition strategy moved beyond publishing standalone RouteRiff articles and now also uses contextual links inside existing travel content.
+
+Speedrun24:
+- Existing Tokyo 24-hour guide now points readers planning a multi-city Japan trip to the Japan backtracking guide and RouteRiff.
+- Primary navigation now includes **AI Trip Planning**, pointing to the dedicated acquisition-content category.
+- New exact-intent article: `/tokyo-hakone-kyoto-osaka-best-route-order/`.
+- The broader AI Japan backtracking article links to that exact route-order guide.
+- The new exact-intent article passes the WordPress mobile SEO audit at 100/100.
+
+Matt China Guide:
+- Contextual route-order links added to the China train-ticket guide, domestic-flight guide, and Beijing / Shanghai / Xi’an / Chengdu hotel-area guides.
+- These pages point first to the owned route-order explainer, then to the free RouteRiff China checker with distinct `src` attribution.
+- The Beijing → Xi’an → Chengdu → Shanghai route-order article now links back to the practical city hotel and transport guides.
+- The route-order page passes the fresh mobile SEO audit at 100/100.
+
+RouteRiff:
+- New exact-intent landing page: `/tokyo-hakone-kyoto-osaka-best-order/`.
+- Added to sitemap and llms.txt.
+- IndexNow workflow is wired to submit the refreshed sitemap set.
