@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/production-health.yml"
       - "index.html"
+      - "analytics.js"
       - "vercel.json"
       - "api/**"
       - ".well-known/**"
@@ -61,6 +62,14 @@ jobs:
           grep -qi '^content-type: text/markdown' /tmp/headers
           grep -q '^# RouteRiff' /tmp/home.md
           grep -q 'Public route-audit API' /tmp/home.md
+
+      - name: Check acquisition landing analytics
+        shell: bash
+        run: |
+          JS="$(curl -fsS --max-time 15 https://routeriff.vercel.app/analytics.js)"
+          printf "%s" "$JS" | grep -q "surface:'landing'"
+          HTML="$(curl -fsS --max-time 15 https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order/)"
+          printf "%s" "$HTML" | grep -q 'src="/analytics.js"'
 
       - name: Check exact route-order landing pages
         shell: bash

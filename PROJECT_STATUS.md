@@ -269,3 +269,24 @@ RouteRiff:
 - New exact-intent landing page: `/tokyo-hakone-kyoto-osaka-best-order/`.
 - Added to sitemap and llms.txt.
 - IndexNow workflow is wired to submit the refreshed sitemap set.
+
+
+## Landing analytics production rollout — 2026-10-07
+
+First-party acquisition-page analytics are now in production.
+
+Production:
+- Git commit: `7d7a47a488afb6c5fc0483e709b459c99b309c89`
+- Vercel deployment: `dpl_6yiKDZ24E4FWwpddQ8oVMp1KjUU5`
+- State: READY
+- Canonical alias: `https://routeriff.vercel.app`
+
+The previous Vercel Ignored Build Step proved unreliable: even a deliberate deploy-trigger commit was skipped. The project-level `commandForIgnoringBuildStep` is therefore disabled. Preview deployments remain disabled.
+
+The high-intent RouteRiff utility, exact-route and starter pages now load `/analytics.js`, which sends the same privacy-safe `page_view` event used by the homepage. First-touch source and landing-path attribution are available through:
+- `routeriff_session_attribution`
+- `routeriff_validation_acquisition_funnel`
+
+Production health now verifies both the analytics client and a representative instrumented landing page.
+
+Do not interpret the validation result until meaningful targeted traffic arrives.
