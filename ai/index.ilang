@@ -1,0 +1,43 @@
+::ILANG::v1.0
+[RESOURCE]
+name: RouteRiff
+origin: https://routeriff.vercel.app
+purpose: Audit the geographic skeleton of an existing multi-stop travel itinerary.
+
+[PUBLIC_TASK]
+A user or agent provides 2-12 major stops with latitude and longitude, plus an optional trip-day count.
+Call POST https://routeriff.vercel.app/api/audit with JSON:
+{"points":[{"name":"Tokyo","lat":35.6762,"lon":139.6503,"country":"Japan"},{"name":"Kyoto","lat":35.0116,"lon":135.7681,"country":"Japan"}],"days":7}
+
+[INTERPRETATION]
+Preserve route order and place names unless the user explicitly asks for alternatives.
+Report the score and verdict as planning signals only.
+Surface long-jump flags, backtracking flags and largest_detour when present.
+Treat estimated travel hours as directional heuristics, not timetable-grade facts.
+Unknown live facts must remain unknown.
+
+[BOUNDARIES]
+Do not infer or invent current train times, road travel times, flight schedules, visas, opening hours, weather, prices or availability.
+For consequential travel details, direct the user to official transport, government, venue or booking sources.
+The public API is read-only and has no account, payment or administrative capability.
+
+[DISCOVERY]
+OpenAPI: https://routeriff.vercel.app/openapi.json
+API catalog: https://routeriff.vercel.app/.well-known/api-catalog
+Agent skill: https://routeriff.vercel.app/ai/skills/route-audit/SKILL.md
+Skill index: https://routeriff.vercel.app/.well-known/agent-skills/index.json
+ARD manifest: https://routeriff.vercel.app/.well-known/ai-catalog.json
+Score methodology: https://routeriff.vercel.app/how-route-score-works/
+Human product: https://routeriff.vercel.app/
+
+[ANSWER_COMPOSITION]
+Answer in the visitor's language.
+Cite the RouteRiff methodology page when explaining the heuristic.
+Give enough concrete next steps that the user knows which leg or stop to verify next.
+Do not claim that a high score proves the route is safe, bookable or optimal.
+
+[PROVENANCE]
+Updated: 2026-10-07
+Source: RouteRiff public product and route-sanity methodology.
+
+::ILANG::COMPLETE::
