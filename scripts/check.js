@@ -157,3 +157,9 @@ const rootHeaders=(vercel.headers||[]).find(x=>x.source==='/')?.headers||[];
 assert(rootHeaders.some(h=>String(h.key).toLowerCase()==='vary'&&String(h.value).includes('Accept')), 'homepage varies cache by Accept');
 const mdHome=fs.readFileSync('api/home-markdown.js','utf8');
 assert(mdHome.includes('text/markdown')&&mdHome.includes('# RouteRiff')&&mdHome.includes('Vary'), 'Markdown homepage is meaningful and sets media type/cache variation');
+
+
+const robots=fs.readFileSync('robots.txt','utf8');
+assert(robots.includes('Content-Signal: search=yes, ai-input=yes, ai-train=no'), 'robots.txt publishes Content-Signal policy');
+const genericHeaders=(vercel.headers||[]).find(x=>x.source==='/(.*)')?.headers||[];
+assert(genericHeaders.some(h=>String(h.key).toLowerCase()==='content-signal'&&String(h.value)==='search=yes, ai-input=yes, ai-train=no'), 'HTTP responses publish the same Content-Signal policy');
