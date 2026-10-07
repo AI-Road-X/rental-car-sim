@@ -30,3 +30,29 @@ jobs:
         run: |
           XML="$(curl -fsS --max-time 15 https://routeriff.vercel.app/sitemap.xml)"
           printf "%s" "$XML" | grep -q 'https://routeriff.vercel.app/'
+
+      - name: Check public route audit API
+        shell: bash
+        run: |
+          BODY="$(curl -fsS --max-time 15 'https://routeriff.vercel.app/api/audit?points=35.6762%2C139.6503%2CTokyo%7C35.0116%2C135.7681%2CKyoto%7C35.2324%2C139.1070%2CHakone%7C34.6937%2C135.5023%2COsaka&days=7')"
+          echo "$BODY"
+          printf "%s" "$BODY" | grep -q '"ok":true'
+          printf "%s" "$BODY" | grep -q '"verdict":'
+          printf "%s" "$BODY" | grep -q '"backtracking_flags":'
+
+      - name: Check Markdown negotiation
+        shell: bash
+        run: |
+          curl -fsS -D /tmp/headers -H 'Accept: text/markdown' --max-time 15 https://routeriff.vercel.app/ -o /tmp/home.md
+          grep -qi '^content-type: text/markdown' /tmp/headers
+          grep -qi '^vary:.*Accept' /tmp/headers
+          grep -q '^# RouteRiff' /tmp/home.md
+          grep -q 'Public route-audit API' /tmp/home.md
+
+      - name: Check agent discovery resources
+        shell: bash
+        run: |
+          curl -fsS --max-time 15 https://routeriff.vercel.app/openapi.json | grep -q '"/api/audit"'
+          curl -fsS --max-time 15 https://routeriff.vercel.app/.well-known/agent-skills/index.json | grep -q 'routeriff-route-audit'
+          curl -fsS --max-time 15 https://routeriff.vercel.app/.well-known/ai-catalog.json | grep -q 'RouteRiff Route Audit API'
+          curl -fsS --max-time 15 https://routeriff.vercel.app/ai/index.ilang | grep -q '::ILANG::COMPLETE::'
