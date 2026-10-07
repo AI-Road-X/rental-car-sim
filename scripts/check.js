@@ -172,3 +172,6 @@ assert(eventApi.includes('copy_audit_summary'), 'audit summary copy event is all
 assert(eventApi.includes('builder_engaged'), 'builder engagement event is allowlisted');
 assert(eventApi.includes('BOT_UA') && eventApi.includes('prefetch'), 'event API filters obvious bots and prefetches');
 assert(html.includes("function markBuilderEngaged()") && html.includes("track('builder_engaged'"), 'builder engagement diagnostic is wired in the UI');
+
+assert(html.includes('function isSampleStops(S)') && html.includes('sample=isSampleStops(S)'), 'sample routes are tagged separately from custom itinerary builds');
+assert(html.includes('id="heroCheck"') && html.includes("$('heroCheck').onclick"), 'hero activation CTA is wired to the builder');
