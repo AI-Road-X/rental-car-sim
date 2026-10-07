@@ -6,9 +6,9 @@ This document records truthful implementation state. It is **not** a claim of a 
 
 ## Implemented and deployed
 
-- WebMCP page tools registered through feature-detected `document.modelContext` (`routeriff.get_current_audit`, `routeriff.load_route`)
+- WebMCP page tools prefer feature-detected `navigator.modelContext` with a `document.modelContext` fallback (`routeriff.get_current_audit`, `routeriff.load_route`)
 - Content Signals policy: `search=yes, ai-input=yes, ai-train=no` in robots.txt and HTTP response headers
-- Homepage `Accept: text/markdown` content negotiation with `Vary: Accept`
+- Dedicated Markdown agent document at `/api/home-markdown`
 - Canonical HTTPS site on `routeriff.vercel.app`
 - robots.txt
 - sitemap.xml
@@ -52,6 +52,7 @@ The endpoint is read-only.
 
 ## Not implemented / not claimed
 
+- Homepage `Accept: text/markdown` content negotiation — tested on production and removed after Vercel continued serving the static HTML representation for that request. The dedicated Markdown endpoint remains available.
 - DNS-AID records — the canonical production host is a provider-owned `vercel.app` subdomain and the project does not control authoritative DNS for `vercel.app`
 - MCP server / MCP Server Card
 - OAuth discovery / Auth.md — RouteRiff currently has no account/auth requirement, and no fake auth surface has been added
@@ -72,4 +73,4 @@ Only continue protocol work if it improves real agent use or a current default-s
 
 ## WebMCP execution caveat
 
-The page-side WebMCP tools use the current `document.modelContext.registerTool` surface and include lifecycle cleanup. This environment cannot launch a Chrome WebMCP-enabled session to execute the tools through the browser protocol, so source/CI verification is complete but independent live WebMCP execution remains unverified. Do not claim a scanner pass for this item until an actual compatible browser/client executes the tools.
+The page-side WebMCP tools prefer the current `navigator.modelContext.registerTool` surface with a document fallback and include lifecycle cleanup. This environment cannot launch a Chrome WebMCP-enabled session to execute the tools through the browser protocol, so source/CI verification is complete but independent live WebMCP execution remains unverified. Do not claim a scanner pass for this item until an actual compatible browser/client executes the tools.

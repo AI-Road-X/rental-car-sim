@@ -54,16 +54,11 @@ jobs:
           printf "%s" "$BODY" | grep -q '"verdict":'
           printf "%s" "$BODY" | grep -q '"backtracking_flags":'
 
-      - name: Check Markdown negotiation
+      - name: Check Markdown agent document
         shell: bash
         run: |
-          curl -fsS -D /tmp/headers -H 'Accept: text/markdown' --max-time 15 https://routeriff.vercel.app/ -o /tmp/home.md
-          echo '--- RESPONSE HEADERS ---'
-          cat /tmp/headers
-          echo '--- MARKDOWN HEAD ---'
-          head -n 24 /tmp/home.md
+          curl -fsS -D /tmp/headers --max-time 15 https://routeriff.vercel.app/api/home-markdown -o /tmp/home.md
           grep -qi '^content-type: text/markdown' /tmp/headers
-          grep -qi '^vary:.*Accept' /tmp/headers
           grep -q '^# RouteRiff' /tmp/home.md
           grep -q 'Public route-audit API' /tmp/home.md
 
