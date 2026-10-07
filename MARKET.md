@@ -128,3 +128,48 @@ Differentiating product behaviors to test:
 Competitors with real routing, live place data and date-aware checks are stronger on factual verification. RouteRiff must not imply equivalence until those data integrations exist.
 
 Stage-0 wins only if the **critic → fix → share/remix** loop creates behavior competitors' static reports do not.
+
+
+## 2026-10-07 search snapshot — route/pacing competition
+
+Fresh search results make the category boundary clearer:
+
+- Japan Revisited is strong on Japan-specific live verification: transit logic, JR Pass math, seasonality, booking urgency and a paid rebuild.
+- TripSapien checks matched places against date-specific details and keeps uncertain names visible.
+- Journey Planner positions directly as an AI itinerary checker/analyzer and names overloaded days, backtracking and timing problems.
+- Mappu and SuperTravel both target the exact anxiety phrase **"is my itinerary too rushed?"**.
+- Girl Made for Travel now has a Europe Route Reality Check focused on geographic route logic and pacing.
+- Rooutie positions itinerary review as a read-only critique before proposing edits.
+- General route planners continue to compete on real road routing, stop count and shortest-path optimization.
+
+### What this means for RouteRiff
+
+The words **AI itinerary checker**, **route optimizer**, and **too rushed** are validated but no longer differentiating.
+
+RouteRiff should keep its product wedge behaviorally distinct:
+
+1. **Bring the itinerary you already have.**
+2. **See the route before accepting another AI answer.**
+3. **Name the biggest geographic detour explicitly.**
+4. **Fix the route manually or with a transparent optimizer.**
+5. **Copy the critique back into any AI instead of trapping the user in one planner.**
+6. **Share/remix the audit as an artifact.**
+7. **Gate commercial exits until the route has been reviewed.**
+
+The best near-term proof is not ranking for a broad keyword. It is whether visitors actually complete:
+
+**audit → fix → copy/share → remix → booking intent**
+
+### Current SEO/content angle
+
+Generic "AI itinerary checker" pages are crowded. More specific problem framing remains better for acquisition:
+
+- check an AI itinerary for backtracking;
+- is my itinerary too rushed;
+- Google Maps route → itinerary sanity check;
+- best city order before booking;
+- destination-specific route order mistakes.
+
+### Current distribution implication
+
+Do not spend Stage-0 budget on paid directory listings or generic AI-tool promotion. Use value-first travel content and route-specific community answers where the visitor already has an itinerary problem.
