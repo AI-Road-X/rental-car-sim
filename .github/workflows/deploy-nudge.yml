@@ -2,7 +2,7 @@ name: One-time RouteRiff deploy nudge
 
 on:
   schedule:
-    - cron: "20 15 * * *"
+    - cron: "30 3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -19,7 +19,7 @@ jobs:
       - name: Trigger one production deploy after Vercel quota reset
         shell: bash
         run: |
-          if [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$(date -u +%F)" != "2026-10-07" ]; then
+          if [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$(date -u +%F)" != "2026-10-08" ]; then
             echo "Outside the one-time deploy date; nothing to do."
             exit 0
           fi
@@ -38,7 +38,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch' || success()
         shell: bash
         run: |
-          if [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$(date -u +%F)" != "2026-10-07" ]; then
+          if [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$(date -u +%F)" != "2026-10-08" ]; then
             exit 0
           fi
           EXPECTED="$(git rev-parse --short=12 HEAD)"
@@ -59,7 +59,7 @@ jobs:
       - name: Submit freshly deployed URLs to IndexNow
         shell: bash
         run: |
-          if [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$(date -u +%F)" != "2026-10-07" ]; then
+          if [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$(date -u +%F)" != "2026-10-08" ]; then
             exit 0
           fi
           python scripts/submit-indexnow.py
