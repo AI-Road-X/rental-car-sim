@@ -1,5 +1,9 @@
 name: RouteRiff production health
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/production-health.yml"
   schedule:
     - cron: "15 1 * * *"
   workflow_dispatch:
