@@ -6,6 +6,7 @@ This document records truthful implementation state. It is **not** a claim of a 
 
 ## Implemented and deployed
 
+- WebMCP page tools registered through feature-detected `document.modelContext` (`routeriff.get_current_audit`, `routeriff.load_route`)
 - Content Signals policy: `search=yes, ai-input=yes, ai-train=no` in robots.txt and HTTP response headers
 - Homepage `Accept: text/markdown` content negotiation with `Vary: Accept`
 - Canonical HTTPS site on `routeriff.vercel.app`
@@ -53,7 +54,6 @@ The endpoint is read-only.
 
 - DNS-AID records — the canonical production host is a provider-owned `vercel.app` subdomain and the project does not control authoritative DNS for `vercel.app`
 - MCP server / MCP Server Card
-- WebMCP browser tool registration
 - OAuth discovery / Auth.md — RouteRiff currently has no account/auth requirement, and no fake auth surface has been added
 - A2A Agent Card
 - x402 / MPP / UCP / ACP commerce protocols
@@ -68,3 +68,8 @@ The current agent-readiness scanner was reviewed from its public current UI, but
 ## Next useful GEO work
 
 Only continue protocol work if it improves real agent use or a current default-scored check. The next protocol work should be selected only after a fresh default-profile scan identifies a real scored gap. Do not add fake OAuth, fake MCP or commerce declarations solely to increase a score.
+
+
+## WebMCP execution caveat
+
+The page-side WebMCP tools use the current `document.modelContext.registerTool` surface and include lifecycle cleanup. This environment cannot launch a Chrome WebMCP-enabled session to execute the tools through the browser protocol, so source/CI verification is complete but independent live WebMCP execution remains unverified. Do not claim a scanner pass for this item until an actual compatible browser/client executes the tools.
