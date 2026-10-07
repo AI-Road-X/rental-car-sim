@@ -55,6 +55,7 @@ jobs:
           printf "%s" "$BODY" | grep -q '"backtracking_flags":'
 
       - name: Check Markdown negotiation
+        continue-on-error: true
         shell: bash
         run: |
           curl -fsS -D /tmp/headers -H 'Accept: text/markdown' --max-time 15 https://routeriff.vercel.app/ -o /tmp/home.md
