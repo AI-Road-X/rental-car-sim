@@ -22,14 +22,16 @@ Anonymous users can insert events through the public application flow but cannot
 
 ## Core funnel
 1. `page_view`
-2. `build_start`
-3. `trip_built`
-4. `play_trip`
-5. `copy_fix_prompt`
-6. `share_trip`
-7. `share_visit`
-8. `remix_trip`
-9. `affiliate_click`
+2. `builder_engaged` — first focus/click on the route builder in a session
+3. `build_start`
+4. `trip_built`
+5. `play_trip`
+6. `copy_fix_prompt`
+7. `copy_audit_summary`
+8. `share_trip`
+9. `share_visit`
+10. `remix_trip`
+11. `affiliate_click`
 
 Supporting interaction events:
 - `file_import`
@@ -95,3 +97,35 @@ For a selected period:
 
 ## Partner attribution
 All booking cards point to the first-party `/api/go?partner=...` endpoint. The endpoint logs the affiliate click and then redirects only to a hard-coded approved partner URL. It does not accept arbitrary redirect destinations.
+
+
+## Analytics quality and validation baseline
+
+The public event endpoint filters obvious crawler, preview, prefetch, Lighthouse/PageSpeed and headless user-agent traffic before writing analytics. This is intentionally conservative and does not claim perfect bot detection.
+
+`builder_engaged` is emitted once per browser session when the visitor first focuses or clicks into the route-building workflow. It separates a weak landing-page view from a visitor who actually touches the product.
+
+Early pre-filter traffic is preserved rather than deleted. The clean Stage-0 validation cohort starts at:
+
+- UTC: **2026-10-07 07:22:00**
+- product commit: `b2aa303eb868a9303931f2c446fdf060ccd51120`
+- production deployment: `dpl_HkbffPwxHwksvDjgh5yhwt2W4Kqq`
+
+Use these owner-only views for go/no-go decisions:
+- `routeriff_validation_baseline`
+- `routeriff_validation_sessions`
+- `routeriff_validation_stage0`
+- `routeriff_validation_source_funnel`
+
+The older aggregate views remain useful for diagnostics and historical comparison, but the validation views are the authoritative Stage-0 cohort.
+
+### Activation diagnostic
+
+In addition to build-start rate, track:
+- builder engagement rate = `engaged_sessions / viewed_sessions`
+- engaged → build rate = `build_sessions / engaged_sessions`
+
+Interpretation:
+- low engagement → landing-page promise / CTA / audience mismatch;
+- healthy engagement but low build start → input UX or example/default-route problem;
+- healthy build start but low completion → geocoding/parser/product reliability problem.

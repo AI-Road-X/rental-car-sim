@@ -9,8 +9,8 @@ RouteRiff is a live Stage-0 validation product.
 Production:
 - https://routeriff.vercel.app/
 - Vercel project: `routeriff`
-- Production deployment: `dpl_8dxkK3rcyGRcZyYyfiQi9U2y5z4d`
-- Production Git commit: `bbabbe414b4ab1d5190f17b8cad90930b1cd90af`
+- Production deployment: `dpl_HkbffPwxHwksvDjgh5yhwt2W4Kqq`
+- Production Git commit: `b2aa303eb868a9303931f2c446fdf060ccd51120`
 - Deployment state: READY
 
 The legacy `tripremix.vercel.app` domain remains attached and is redirected by project configuration to the RouteRiff canonical host.
@@ -79,6 +79,7 @@ Supabase project: `gpbfyrwbxozahqwgbzie`
 
 Privacy-safe event funnel includes:
 - page_view
+- builder_engaged
 - build_start
 - trip_built
 - copy_normalize_prompt
@@ -101,6 +102,10 @@ Owner-only aggregate views include:
 - `routeriff_source_daily`
 - `routeriff_affiliate_context_daily`
 - `routeriff_audit_quality_daily`
+- `routeriff_validation_baseline`
+- `routeriff_validation_sessions`
+- `routeriff_validation_stage0`
+- `routeriff_validation_source_funnel`
 
 Stage-0 validation target remains **500 targeted visits** before any major architecture expansion.
 
@@ -195,15 +200,16 @@ If those signals stay weak after meaningful targeted traffic, change the wedge b
 
 ## Deployment hygiene — 2026-10-07
 
-The Vercel Hobby project hit its daily API deployment limit after many small validation commits. The public production deployment remains healthy, but the newest repository changes are waiting for the quota window to reset.
+The Vercel Hobby project hit its daily API deployment limit after many small validation commits. Production has since caught up and is healthy. The mitigation remains in place so future documentation-only commits do not waste the deployment budget.
 
 Mitigations now in place:
 - Preview deployments disabled for this project.
 - Vercel Ignored Build Step points to `.vercel-ignore.sh`.
 - Documentation / research-only commits are skipped by Vercel.
 - Product/runtime/discovery changes still trigger production builds.
-- A one-time deploy nudge is scheduled for 2026-10-08 after the rolling quota reset window.
-- Core production health remains blocking; experimental Markdown content-negotiation verification is temporarily non-blocking until production catches up.
+- A one-time deploy nudge remains scheduled as a fallback, but should do nothing useful if production remains current.
+- Production health is blocking for the homepage, sitemap, route-audit API, direct Markdown agent document and agent discovery resources.
+- Homepage Accept-header Markdown negotiation was removed after live verification showed Vercel continued serving static HTML; RouteRiff exposes a dedicated Markdown endpoint instead.
 
 Do not manually spam deployments. Preserve the daily deployment budget for real product changes.
 
@@ -223,3 +229,18 @@ Matt China Guide:
 - Yoast meta descriptions were explicitly set on the two RouteRiff acquisition articles.
 
 The acquisition strategy remains problem-specific content rather than generic AI-tool list traffic.
+
+
+## Clean Stage-0 baseline — 2026-10-07
+
+The first 16 stored page-view sessions were collected before bot/prefetch filtering and before there was a builder-engagement diagnostic. They are preserved for auditability, not deleted.
+
+A clean validation cohort now starts at **2026-10-07 07:22:00 UTC**, immediately after production deployment `dpl_HkbffPwxHwksvDjgh5yhwt2W4Kqq` made commit `b2aa303eb868a9303931f2c446fdf060ccd51120` live.
+
+From this point:
+- obvious crawler / preview / prefetch traffic is dropped server-side;
+- `builder_engaged` distinguishes visitors who touch the product from passive page views;
+- `routeriff_validation_stage0` is the authoritative 500-visit validation gate;
+- historical views are retained for debugging only.
+
+Baseline counts began at zero. Do not interpret the earlier 16 page views as evidence of product-market behavior.
