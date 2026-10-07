@@ -152,11 +152,9 @@ assert(['Looks reasonable','Needs a second look','Rework before booking'].includ
 
 
 const rootMdRewrite=(vercel.rewrites||[]).find(x=>x.source==='/'&&x.destination==='/api/home-markdown');
-assert(Boolean(rootMdRewrite&&Array.isArray(rootMdRewrite.has)&&rootMdRewrite.has.some(h=>h.type==='header'&&h.key==='accept')), 'homepage Markdown negotiation rewrite configured');
-const rootHeaders=(vercel.headers||[]).find(x=>x.source==='/')?.headers||[];
-assert(rootHeaders.some(h=>String(h.key).toLowerCase()==='vary'&&String(h.value).includes('Accept')), 'homepage varies cache by Accept');
+assert(!rootMdRewrite, 'unverified homepage Markdown negotiation rewrite is not advertised');
 const mdHome=fs.readFileSync('api/home-markdown.js','utf8');
-assert(mdHome.includes('text/markdown')&&mdHome.includes('# RouteRiff')&&mdHome.includes('Vary'), 'Markdown homepage is meaningful and sets media type/cache variation');
+assert(mdHome.includes('text/markdown')&&mdHome.includes('# RouteRiff')&&mdHome.includes('Access-Control-Allow-Origin'), 'dedicated Markdown agent document is meaningful and public');
 
 
 const robots=fs.readFileSync('robots.txt','utf8');
