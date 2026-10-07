@@ -27,7 +27,7 @@ try{
 if(process.exitCode) process.exit(process.exitCode);
 
 
-for(const file of ['api/event.js','api/go.js','api/health.js','api/share.js','api/expand-map.js','api/audit.js']){
+for(const file of ['api/event.js','api/go.js','api/health.js','api/share.js','api/expand-map.js','api/audit.js','api/home-markdown.js']){
   const src=fs.readFileSync(file,'utf8').replace(/export\s+default\s+/g,'');
   try{
     new Function(src);
@@ -149,3 +149,11 @@ const auditPts=[
 const auditResult=auditCore.analyze(auditPts,7);
 assert(auditResult.backtracking_flags>0 || auditResult.largest_detour, 'public audit API flags the Japan stress route');
 assert(['Looks reasonable','Needs a second look','Rework before booking'].includes(auditResult.verdict), 'public audit API returns a bounded verdict');
+
+
+const rootMdRewrite=(vercel.rewrites||[]).find(x=>x.source==='/'&&x.destination==='/api/home-markdown');
+assert(Boolean(rootMdRewrite&&Array.isArray(rootMdRewrite.has)&&rootMdRewrite.has.some(h=>h.type==='header'&&h.key==='accept')), 'homepage Markdown negotiation rewrite configured');
+const rootHeaders=(vercel.headers||[]).find(x=>x.source==='/')?.headers||[];
+assert(rootHeaders.some(h=>String(h.key).toLowerCase()==='vary'&&String(h.value).includes('Accept')), 'homepage varies cache by Accept');
+const mdHome=fs.readFileSync('api/home-markdown.js','utf8');
+assert(mdHome.includes('text/markdown')&&mdHome.includes('# RouteRiff')&&mdHome.includes('Vary'), 'Markdown homepage is meaningful and sets media type/cache variation');
