@@ -68,14 +68,14 @@ jobs:
         run: |
           JS="$(curl -fsS --max-time 15 https://routeriff.vercel.app/analytics.js)"
           printf "%s" "$JS" | grep -q "surface:'landing'"
-          HTML="$(curl -fsS --max-time 15 https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order/)"
+          HTML="$(curl -fsSL --max-time 15 https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order/)"
           printf "%s" "$HTML" | grep -q 'src="/analytics.js"'
 
       - name: Check exact route-order landing pages
         shell: bash
         run: |
-          curl -fsS --max-time 15 https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order/ | grep -q 'Tokyo → Hakone → Kyoto → Osaka'
-          curl -fsS --max-time 15 https://routeriff.vercel.app/beijing-xian-chengdu-shanghai-best-order/ | grep -q 'Beijing → Xi’an → Chengdu → Shanghai'
+          curl -fsSL --max-time 15 https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order/ | grep -q 'Tokyo → Hakone → Kyoto → Osaka'
+          curl -fsSL --max-time 15 https://routeriff.vercel.app/beijing-xian-chengdu-shanghai-best-order/ | grep -q 'Beijing → Xi’an → Chengdu → Shanghai'
 
       - name: Check agent discovery resources
         shell: bash
