@@ -111,7 +111,9 @@ Published external articles:
 - https://speedrun24.com/ai-japan-itinerary-backtracking-check/
 - https://speedrun24.com/google-maps-route-itinerary-sanity-check/
 - https://speedrun24.com/is-my-travel-itinerary-too-rushed/
+- https://speedrun24.com/check-ai-travel-itinerary-backtracking/
 - https://mattchinaguide.com/check-ai-china-itinerary-route/
+- https://mattchinaguide.com/beijing-xian-chengdu-shanghai-best-route-order/
 
 RouteRiff acquisition / utility pages include:
 - /ai-itinerary-critic/
@@ -204,3 +206,20 @@ Mitigations now in place:
 - Core production health remains blocking; experimental Markdown content-negotiation verification is temporarily non-blocking until production catches up.
 
 Do not manually spam deployments. Preserve the daily deployment budget for real product changes.
+
+
+## External content SEO cleanup — 2026-10-07
+
+Speedrun24:
+- RouteRiff acquisition posts are grouped under **AI Travel Planning**.
+- Shared tags: **RouteRiff** and **AI itinerary**.
+- Latest checked RouteRiff article scores 100/100 on the WordPress SEO audit.
+
+Matt China Guide:
+- RouteRiff China articles are grouped under **Before You Go** + **Getting Around**.
+- Shared tags: **China itinerary** + **Route planning**.
+- Custom robots output was cleaned so it uses standard robots directives; AI resource discovery remains available elsewhere on the site.
+- Fresh mobile SEO audit after the robots cleanup: 100/100.
+- Yoast meta descriptions were explicitly set on the two RouteRiff acquisition articles.
+
+The acquisition strategy remains problem-specific content rather than generic AI-tool list traffic.
