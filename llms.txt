@@ -39,3 +39,12 @@ Some optional booking exits are affiliate links. Affiliate economics do not chan
 - Booking options are gated behind review when the route verdict still needs attention.
 
 - https://routeriff.vercel.app/is-my-itinerary-too-rushed/
+
+## Agent-readable resources
+- https://routeriff.vercel.app/api/home-markdown
+- https://routeriff.vercel.app/openapi.json
+- https://routeriff.vercel.app/.well-known/api-catalog
+- https://routeriff.vercel.app/.well-known/ai-catalog.json
+- https://routeriff.vercel.app/.well-known/agent-skills/index.json
+- https://routeriff.vercel.app/ai/skills/route-audit/SKILL.md
+- https://routeriff.vercel.app/ai/index.ilang

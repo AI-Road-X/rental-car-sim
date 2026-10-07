@@ -1,6 +1,5 @@
 export default function handler(req,res){
-  const accept=String(req.headers&&req.headers.accept||"");
-  if(!accept.toLowerCase().includes("text/markdown")) return res.status(406).send("Not Acceptable");
+  if(!["GET","HEAD"].includes(req.method)) return res.status(405).end();
   const body=`# RouteRiff
 
 **AI planned it. RouteRiff pushes back.**
@@ -38,6 +37,7 @@ It does not verify current train times, road routes, flights, visas, border rule
 
 ## Public agent interface
 
+- [Markdown overview](https://routeriff.vercel.app/api/home-markdown)
 - [OpenAPI](https://routeriff.vercel.app/openapi.json)
 - [API catalog](https://routeriff.vercel.app/.well-known/api-catalog)
 - [AI resource manifest](https://routeriff.vercel.app/.well-known/ai-catalog.json)
@@ -60,8 +60,8 @@ Local text/CSV imports are read in the browser. Product analytics store coarse e
 Updated: 2026-10-07
 `;
   res.setHeader("Content-Type","text/markdown; charset=utf-8");
-  res.setHeader("Vary","Accept");
   res.setHeader("Cache-Control","public, max-age=0, s-maxage=3600");
   res.setHeader("Access-Control-Allow-Origin","*");
+  if(req.method==="HEAD") return res.status(200).end();
   return res.status(200).send(body);
 }
