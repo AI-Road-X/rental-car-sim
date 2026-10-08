@@ -79,6 +79,7 @@ Supabase project: `gpbfyrwbxozahqwgbzie`
 
 Privacy-safe event funnel includes:
 - page_view
+- landing_cta
 - builder_engaged
 - build_start
 - trip_built
@@ -121,6 +122,10 @@ Published external articles:
 - https://mattchinaguide.com/check-ai-china-itinerary-route/
 - https://mattchinaguide.com/beijing-xian-chengdu-shanghai-best-route-order/
 
+- https://speedrun24.com/rome-florence-venice-7-days-too-rushed/
+
+- https://mattchinaguide.com/beijing-xian-chengdu-shanghai-10-days-too-rushed/
+
 RouteRiff acquisition / utility pages include:
 - /ai-itinerary-critic/
 - /ai-itinerary-checker/
@@ -135,6 +140,8 @@ RouteRiff acquisition / utility pages include:
 - /itinerary-map-maker/
 - /trip-distance-calculator/
 - /examples/ai-itinerary-fails/
+- /china-10-day-beijing-xian-chengdu-shanghai-too-rushed/
+- /italy-7-day-rome-florence-venice-too-rushed/
 - starter trip pages
 
 IndexNow submission runs through GitHub Actions.
@@ -290,3 +297,24 @@ The high-intent RouteRiff utility, exact-route and starter pages now load `/anal
 Production health now verifies both the analytics client and a representative instrumented landing page.
 
 Do not interpret the validation result until meaningful targeted traffic arrives.
+
+
+## Acquisition CTA diagnostics — 2026-10-08
+
+High-intent RouteRiff landing pages now track a privacy-safe `landing_cta` event when a visitor clicks an internal CTA.
+
+The event stores only:
+- landing page path;
+- coarse target kind (`route`, `builder`, or `internal`);
+- target pathname.
+
+It does not store route query strings.
+
+`routeriff_validation_acquisition_funnel` now reports landing-page CTA sessions and CTA rate before builder activation. This separates three failure modes:
+1. page gets viewed but CTA is ignored;
+2. CTA is clicked but builder is not engaged;
+3. builder is engaged but no custom route is completed.
+
+New pacing surfaces added in the same acquisition wave:
+- Rome → Florence → Venice in 7 days;
+- Beijing → Xi’an → Chengdu → Shanghai in 10 days.

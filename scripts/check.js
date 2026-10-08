@@ -177,7 +177,7 @@ assert(html.includes('function isSampleStops(S)') && html.includes('sample=isSam
 assert(html.includes('id="heroCheck"') && html.includes("$('heroCheck').onclick"), 'hero activation CTA is wired to the builder');
 
 const landingAnalytics=fs.readFileSync('analytics.js','utf8');
-assert(landingAnalytics.includes("event:'page_view'") && landingAnalytics.includes("surface:'landing'"), 'first-party landing analytics client is present');
+assert(landingAnalytics.includes("send('page_view'") && landingAnalytics.includes("surface:'landing'"), 'first-party landing analytics client is present');
 
 const instrumentedLandingPages=["ai-itinerary-checker/index.html","ai-itinerary-critic/index.html","chatgpt-itinerary-to-map/index.html","china-itinerary-checker/index.html","beijing-xian-chengdu-shanghai-best-order/index.html","examples/ai-itinerary-fails/index.html","google-maps-route-to-itinerary/index.html","is-my-itinerary-too-rushed/index.html","japan-itinerary-checker/index.html","tokyo-hakone-kyoto-osaka-best-order/index.html","multi-city-itinerary-checker/index.html","optimize-travel-itinerary-route/index.html","travel-route-visualizer/index.html","itinerary-map-maker/index.html","trip-distance-calculator/index.html","trips/japan-7-days/index.html","trips/italy-7-days/index.html","trips/portugal-7-days/index.html","trips/euro-city-hop/index.html","japan-10-day-tokyo-hakone-kyoto-osaka-tokyo/index.html","italy-7-day-rome-florence-venice-too-rushed/index.html","china-10-day-beijing-xian-chengdu-shanghai-too-rushed/index.html"];
 for(const file of instrumentedLandingPages){
