@@ -1,2 +1,2 @@
-2026-10-07T23:15:00+09:00
-landing analytics rollout
+RouteRiff production deploy nudge after Hobby quota reset.
+UTC: 2026-10-08T10:49:27Z
