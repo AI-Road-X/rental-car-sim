@@ -179,8 +179,11 @@ assert(html.includes('id="heroCheck"') && html.includes("$('heroCheck').onclick"
 const landingAnalytics=fs.readFileSync('analytics.js','utf8');
 assert(landingAnalytics.includes("event:'page_view'") && landingAnalytics.includes("surface:'landing'"), 'first-party landing analytics client is present');
 
-const instrumentedLandingPages=["ai-itinerary-checker/index.html","ai-itinerary-critic/index.html","chatgpt-itinerary-to-map/index.html","china-itinerary-checker/index.html","beijing-xian-chengdu-shanghai-best-order/index.html","examples/ai-itinerary-fails/index.html","google-maps-route-to-itinerary/index.html","is-my-itinerary-too-rushed/index.html","japan-itinerary-checker/index.html","tokyo-hakone-kyoto-osaka-best-order/index.html","multi-city-itinerary-checker/index.html","optimize-travel-itinerary-route/index.html","travel-route-visualizer/index.html","itinerary-map-maker/index.html","trip-distance-calculator/index.html","trips/japan-7-days/index.html","trips/italy-7-days/index.html","trips/portugal-7-days/index.html","trips/euro-city-hop/index.html"];
+const instrumentedLandingPages=["ai-itinerary-checker/index.html","ai-itinerary-critic/index.html","chatgpt-itinerary-to-map/index.html","china-itinerary-checker/index.html","beijing-xian-chengdu-shanghai-best-order/index.html","examples/ai-itinerary-fails/index.html","google-maps-route-to-itinerary/index.html","is-my-itinerary-too-rushed/index.html","japan-itinerary-checker/index.html","tokyo-hakone-kyoto-osaka-best-order/index.html","multi-city-itinerary-checker/index.html","optimize-travel-itinerary-route/index.html","travel-route-visualizer/index.html","itinerary-map-maker/index.html","trip-distance-calculator/index.html","trips/japan-7-days/index.html","trips/italy-7-days/index.html","trips/portugal-7-days/index.html","trips/euro-city-hop/index.html","japan-10-day-tokyo-hakone-kyoto-osaka-tokyo/index.html","italy-7-day-rome-florence-venice-too-rushed/index.html","china-10-day-beijing-xian-chengdu-shanghai-too-rushed/index.html"];
 for(const file of instrumentedLandingPages){
   const src=fs.readFileSync(file,'utf8');
   assert(src.includes('src="/analytics.js"'), file+' loads first-party landing analytics');
 }
+
+assert(eventApi.includes('landing_cta'), 'landing CTA event is allowlisted');
+assert(landingAnalytics.includes("send('landing_cta'") && landingAnalytics.includes("target:u.pathname"), 'landing pages measure internal CTA clicks without storing query text');

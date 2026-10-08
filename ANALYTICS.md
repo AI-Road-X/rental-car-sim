@@ -54,6 +54,10 @@ For a selected period:
 - share-generated sessions
 - SEO landing-page sessions
 
+### Acquisition-page handoff
+- landing CTA rate = sessions with landing_cta / sessions with page_view on the landing surface
+- inspect first source + landing path in `routeriff_validation_acquisition_funnel`
+
 ### Activation
 - build-start rate = sessions with build_start / sessions with page_view
 - build completion = sessions with trip_built / sessions with build_start
@@ -135,6 +139,7 @@ Interpretation:
 
 High-intent acquisition and starter pages load the first-party `/analytics.js` client. It uses the same anonymous session ID as the main product and sends only:
 - `page_view`
+- `landing_cta` — clicked an internal CTA on an acquisition/utility page
 - source/referrer label
 - page path
 - `surface=landing`
@@ -146,3 +151,13 @@ Owner-only attribution views:
 - `routeriff_validation_acquisition_funnel` — clean Stage-0 conversion by first source + landing page
 
 This closes the previous blind spot where a visitor could land on an SEO utility page, read it, and leave without ever reaching the homepage event tracker.
+
+
+## Landing CTA privacy
+
+`landing_cta` records only:
+- the current landing-page path;
+- a coarse target kind (`route`, `builder`, or `internal`);
+- the destination pathname.
+
+Destination query strings are not stored by `landing_cta`, so a route URL's stop list is not copied into analytics metadata.
