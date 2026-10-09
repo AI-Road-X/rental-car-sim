@@ -1,56 +1,49 @@
-# RouteRiff\n\nRouteRiff is a browser-first visual itinerary tool. It turns a sequence of travel stops into a map, estimates directional distance and travel load, flags obvious routing problems, animates the journey, and creates a shareable/remixable URL.\n\n## Primary capability\n- Paste cities or stops separated by lines, commas or arrows.\n- Visualize the route on OpenStreetMap.\n- Get a simple route-sanity score and travel-load estimate.\n- Play the route as an animation.\n- Share or remix the trip.\n- Open independent booking partners through disclosed affiliate links.\n\n## Important limitations\nDistance, travel-time and transport-mode outputs are rough planning estimates, not live schedule, visa, safety, weather or booking advice. Confirm critical information with official sources and booking providers.\n\nCanonical product URL: https://routeriff.vercel.app/\n
+# RouteRiff
 
-## Primary positioning
-RouteRiff is a second-pass AI itinerary sanity checker, not a general travel chatbot or OTA. A traveler brings an itinerary from ChatGPT, Claude, Gemini, a blog, spreadsheet or friend. RouteRiff visualizes the geographic route, estimates rough travel load, flags potential backtracking and long jumps, supports manual reordering and a simple optimizer, and creates a correction prompt that can be sent back to any AI.
+RouteRiff is a free browser-first, second-pass itinerary checker. Bring an existing travel plan, map its major stops, inspect rough geographic travel load and backtracking, reorder or remove stops, and share or remix the result. It can generate a correction prompt for the AI that drafted the itinerary. No account is required for the current validation version.
 
-## Useful public pages
-- https://routeriff.vercel.app/ai-itinerary-checker/
-- https://routeriff.vercel.app/chatgpt-itinerary-to-map/
-- https://routeriff.vercel.app/optimize-travel-itinerary-route/
-- https://routeriff.vercel.app/travel-route-visualizer/
-- https://routeriff.vercel.app/itinerary-map-maker/
-- https://routeriff.vercel.app/trip-distance-calculator/
-- https://routeriff.vercel.app/how-route-score-works/
+Canonical product URL: https://routeriff.vercel.app/
 
-## Commercial disclosure
-Some optional booking exits are affiliate links. Affiliate economics do not change the route score or route-order logic.
+## What the checker does
 
-- https://routeriff.vercel.app/japan-itinerary-checker/
-- https://routeriff.vercel.app/china-itinerary-checker/
-- https://routeriff.vercel.app/google-maps-route-to-itinerary/
-- https://routeriff.vercel.app/examples/ai-itinerary-fails/
+- Accepts plain-text stops, common AI itinerary formats, and local TXT, Markdown, or common CSV files.
+- Maps 2–12 major stops, estimates straight-line distance and rough transfer load, and flags long jumps, possible backtracking, and pacing pressure when trip days are supplied.
+- Supports manual reordering, a simple middle-stop optimizer, a visual route playback, and shareable or remixable route URLs.
+- Offers optional booking exits after route review. Some exits are affiliate links; they do not influence the route score.
 
-## Input options
-- Plain-text lists, arrows, bullets and common AI itinerary lines.
-- Optional trip-day count for pacing context.
-- Local .txt, .md and common .csv itinerary imports; these files are read in the browser and are not uploaded by the importer.
-- Full Google Maps directions URLs and Apple Maps start/destination links.
-- Google Maps short links are expanded only through a restricted Google-host redirect resolver.
+## Limits
 
-## Current audit behaviors
-- Rough straight-line route distance and travel-load heuristic.
-- Very long-leg warnings.
-- Potential backtracking and largest-detour-stop detection.
-- Trip-day pacing warnings.
-- Cross-country hop warning when the route repeatedly changes country.
-- Manual reorder/remove, simple middle-stop optimizer and before/after comparison.
-- Model-agnostic cleanup prompt and correction prompt.
-- Shareable/remixable route URL and social share card.
-- Booking options are gated behind review when the route verdict still needs attention.
+RouteRiff does not provide live train or flight schedules, road routes, visas, opening hours, prices, availability, or booking advice. Its distance and travel-time estimates are planning heuristics. Verify critical details with official sources and booking providers before paying.
 
-- https://routeriff.vercel.app/is-my-itinerary-too-rushed/
+## High-intent checks and examples
+
+- [AI itinerary checker](https://routeriff.vercel.app/ai-itinerary-checker/)
+- [Is my itinerary too rushed?](https://routeriff.vercel.app/is-my-itinerary-too-rushed/)
+- [Japan itinerary checker](https://routeriff.vercel.app/japan-itinerary-checker/)
+- [China itinerary checker](https://routeriff.vercel.app/china-itinerary-checker/)
+- [Tokyo, Hakone, Kyoto, Osaka route order](https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order/)
+- [Beijing, Xi'an, Chengdu, Shanghai route order](https://routeriff.vercel.app/beijing-xian-chengdu-shanghai-best-order/)
+- [Japan 10-day pacing check](https://routeriff.vercel.app/japan-10-day-tokyo-hakone-kyoto-osaka-tokyo/)
+- [Italy 7-day pacing check](https://routeriff.vercel.app/italy-7-day-rome-florence-venice-too-rushed/)
+- [China 10-day pacing check](https://routeriff.vercel.app/china-10-day-beijing-xian-chengdu-shanghai-too-rushed/)
+- [Three AI itinerary failure examples](https://routeriff.vercel.app/examples/ai-itinerary-fails/)
+
+## Tools and method
+
+- [ChatGPT itinerary to map](https://routeriff.vercel.app/chatgpt-itinerary-to-map/)
+- [Google Maps route to itinerary](https://routeriff.vercel.app/google-maps-route-to-itinerary/)
+- [Optimize a travel itinerary route](https://routeriff.vercel.app/optimize-travel-itinerary-route/)
+- [Travel route visualizer](https://routeriff.vercel.app/travel-route-visualizer/)
+- [Itinerary map maker](https://routeriff.vercel.app/itinerary-map-maker/)
+- [Trip distance calculator](https://routeriff.vercel.app/trip-distance-calculator/)
+- [How the route score works](https://routeriff.vercel.app/how-route-score-works/)
 
 ## Agent-readable resources
-- https://routeriff.vercel.app/api/home-markdown
-- https://routeriff.vercel.app/openapi.json
-- https://routeriff.vercel.app/.well-known/api-catalog
-- https://routeriff.vercel.app/.well-known/ai-catalog.json
-- https://routeriff.vercel.app/.well-known/agent-skills/index.json
-- https://routeriff.vercel.app/ai/skills/route-audit/SKILL.md
-- https://routeriff.vercel.app/ai/index.ilang
 
-- https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order/
-- https://routeriff.vercel.app/beijing-xian-chengdu-shanghai-best-order/
-- https://routeriff.vercel.app/japan-10-day-tokyo-hakone-kyoto-osaka-tokyo/
-- https://routeriff.vercel.app/italy-7-day-rome-florence-venice-too-rushed/
-- https://routeriff.vercel.app/china-10-day-beijing-xian-chengdu-shanghai-too-rushed/
+- [RouteRiff Markdown overview](https://routeriff.vercel.app/api/home-markdown)
+- [Public route audit API documentation](https://routeriff.vercel.app/openapi.json)
+- [API catalog](https://routeriff.vercel.app/.well-known/api-catalog)
+- [AI resource catalog](https://routeriff.vercel.app/.well-known/ai-catalog.json)
+- [Agent Skills index](https://routeriff.vercel.app/.well-known/agent-skills/index.json)
+- [Route audit skill](https://routeriff.vercel.app/ai/skills/route-audit/SKILL.md)
+- [I-Lang instructions](https://routeriff.vercel.app/ai/index.ilang)
