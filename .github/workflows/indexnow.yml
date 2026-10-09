@@ -4,18 +4,10 @@ on:
     branches: [main]
     paths:
       - "index.html"
+      - "**/index.html"
       - "sitemap.xml"
       - "robots.txt"
       - "llms.txt"
-      - "ai-itinerary-critic/**"
-      - "ai-itinerary-checker/**"
-      - "chatgpt-itinerary-to-map/**"
-      - "optimize-travel-itinerary-route/**"
-      - "travel-route-visualizer/**"
-      - "itinerary-map-maker/**"
-      - "trip-distance-calculator/**"
-      - "trips/**"
-      - "examples/**"
       - "b84303762a345adc3028979f3d746106.txt"
       - "scripts/submit-indexnow.py"
   workflow_dispatch:
@@ -26,10 +18,22 @@ permissions:
 jobs:
   submit:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Wait briefly for Vercel production deploy
-        run: sleep 45
+      - name: Wait for this commit in production
+        shell: bash
+        run: |
+          EXPECTED="${GITHUB_SHA:0:12}"
+          for i in $(seq 1 30); do
+            BODY="$(curl -fsS --max-time 10 https://routeriff.vercel.app/api/health || true)"
+            if printf '%s' "$BODY" | grep -q '"commit":"'"$EXPECTED"'"'; then
+              echo "RouteRiff production is serving $EXPECTED"
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "Production did not reach $EXPECTED; no URLs were submitted."
+          exit 1
       - name: Submit sitemap URLs to IndexNow
         run: python scripts/submit-indexnow.py
