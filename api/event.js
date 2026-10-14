@@ -2,8 +2,16 @@ const ALLOWED=new Set(["page_view","landing_cta","builder_engaged","build_start"
 
 const BOT_UA=/(?:bot|crawler|spider|slurp|preview|facebookexternalhit|twitterbot|linkedinbot|discordbot|slackbot|telegrambot|whatsapp|curl|wget|python-requests|headless|lighthouse|pagespeed|google-inspectiontool|bingpreview)/i;
 
+function problem(res,status,title,detail,code){
+  res.setHeader("Content-Type","application/problem+json; charset=utf-8");
+  return res.status(status).send(JSON.stringify({type:"about:blank",title,status,detail,code}));
+}
+
 export default async function handler(req,res){
-  if(req.method!=="POST") return res.status(405).end();
+  if(req.method!=="POST"){
+    res.setHeader("Allow","POST");
+    return problem(res,405,"Method Not Allowed","Send a POST request with an allowed RouteRiff event.","method_not_allowed");
+  }
 
   const ua=String(req.headers&&req.headers["user-agent"]||"");
   const purpose=String(req.headers&&(req.headers["sec-purpose"]||req.headers["purpose"])||"");
@@ -14,7 +22,7 @@ export default async function handler(req,res){
 
   const body=req.body||{};
   const event=String(body.event||"").replace(/[^a-z0-9_:-]/gi,"").slice(0,64);
-  if(!event||!ALLOWED.has(event)) return res.status(400).json({ok:false});
+  if(!event||!ALLOWED.has(event)) return problem(res,400,"Invalid event","The event name is missing or is not supported.","invalid_event");
 
   const clean=(value,max)=>String(value||"").replace(/[\u0000-\u001f\u007f]/g,"").slice(0,max);
   const session_id=clean(body.session_id,64)||null;

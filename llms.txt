@@ -4,6 +4,16 @@ RouteRiff is a free browser-first, second-pass itinerary checker. Bring an exist
 
 Canonical product URL: https://routeriff.vercel.app/
 
+## When to use RouteRiff
+
+Use RouteRiff when a traveler already has a multi-stop itinerary from an AI, blog, spreadsheet, map or their own notes and wants to check geographic order, long jumps, backtracking or rough travel load before booking. It is a second-pass route critic, not a live itinerary generator or timetable.
+
+For an agent-assisted route audit, first ask the traveler which stops and trip days they want checked. Use the public route audit API only when reliable coordinates for 2–12 stops are available. Return its result as a planning signal, explain that it uses straight-line distance and simple transfer heuristics, and direct the traveler to official transport and booking sources for current schedules, prices and availability.
+
+## Contact and feedback
+
+- [Contact RouteRiff](https://routeriff.vercel.app/contact)
+
 ## What the checker does
 
 - Accepts plain-text stops, common AI itinerary formats, and local TXT, Markdown, or common CSV files.
@@ -17,26 +27,26 @@ RouteRiff does not provide live train or flight schedules, road routes, visas, o
 
 ## High-intent checks and examples
 
-- [AI itinerary checker](https://routeriff.vercel.app/ai-itinerary-checker/)
-- [Is my itinerary too rushed?](https://routeriff.vercel.app/is-my-itinerary-too-rushed/)
-- [Japan itinerary checker](https://routeriff.vercel.app/japan-itinerary-checker/)
-- [China itinerary checker](https://routeriff.vercel.app/china-itinerary-checker/)
-- [Tokyo, Hakone, Kyoto, Osaka route order](https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order/)
-- [Beijing, Xi'an, Chengdu, Shanghai route order](https://routeriff.vercel.app/beijing-xian-chengdu-shanghai-best-order/)
-- [Japan 10-day pacing check](https://routeriff.vercel.app/japan-10-day-tokyo-hakone-kyoto-osaka-tokyo/)
-- [Italy 7-day pacing check](https://routeriff.vercel.app/italy-7-day-rome-florence-venice-too-rushed/)
-- [China 10-day pacing check](https://routeriff.vercel.app/china-10-day-beijing-xian-chengdu-shanghai-too-rushed/)
-- [Three AI itinerary failure examples](https://routeriff.vercel.app/examples/ai-itinerary-fails/)
+- [AI itinerary checker](https://routeriff.vercel.app/ai-itinerary-checker)
+- [Is my itinerary too rushed?](https://routeriff.vercel.app/is-my-itinerary-too-rushed)
+- [Japan itinerary checker](https://routeriff.vercel.app/japan-itinerary-checker)
+- [China itinerary checker](https://routeriff.vercel.app/china-itinerary-checker)
+- [Tokyo, Hakone, Kyoto, Osaka route order](https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order)
+- [Beijing, Xi'an, Chengdu, Shanghai route order](https://routeriff.vercel.app/beijing-xian-chengdu-shanghai-best-order)
+- [Japan 10-day pacing check](https://routeriff.vercel.app/japan-10-day-tokyo-hakone-kyoto-osaka-tokyo)
+- [Italy 7-day pacing check](https://routeriff.vercel.app/italy-7-day-rome-florence-venice-too-rushed)
+- [China 10-day pacing check](https://routeriff.vercel.app/china-10-day-beijing-xian-chengdu-shanghai-too-rushed)
+- [Three AI itinerary failure examples](https://routeriff.vercel.app/examples/ai-itinerary-fails)
 
 ## Tools and method
 
-- [ChatGPT itinerary to map](https://routeriff.vercel.app/chatgpt-itinerary-to-map/)
-- [Google Maps route to itinerary](https://routeriff.vercel.app/google-maps-route-to-itinerary/)
-- [Optimize a travel itinerary route](https://routeriff.vercel.app/optimize-travel-itinerary-route/)
-- [Travel route visualizer](https://routeriff.vercel.app/travel-route-visualizer/)
-- [Itinerary map maker](https://routeriff.vercel.app/itinerary-map-maker/)
-- [Trip distance calculator](https://routeriff.vercel.app/trip-distance-calculator/)
-- [How the route score works](https://routeriff.vercel.app/how-route-score-works/)
+- [ChatGPT itinerary to map](https://routeriff.vercel.app/chatgpt-itinerary-to-map)
+- [Google Maps route to itinerary](https://routeriff.vercel.app/google-maps-route-to-itinerary)
+- [Optimize a travel itinerary route](https://routeriff.vercel.app/optimize-travel-itinerary-route)
+- [Travel route visualizer](https://routeriff.vercel.app/travel-route-visualizer)
+- [Itinerary map maker](https://routeriff.vercel.app/itinerary-map-maker)
+- [Trip distance calculator](https://routeriff.vercel.app/trip-distance-calculator)
+- [How the route score works](https://routeriff.vercel.app/how-route-score-works)
 
 ## Agent-readable resources
 

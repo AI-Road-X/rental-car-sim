@@ -6,6 +6,12 @@ export default function handler(req,res){
 
 RouteRiff is a second-pass critic for travel itineraries you already have. It turns the major stops into a visual route, surfaces geographic backtracking and travel-heavy structure, lets you reorder or remove stops, and creates a correction prompt you can send back to any AI.
 
+## When to use RouteRiff
+
+Use RouteRiff when a traveler already has a multi-stop itinerary from an AI, blog, spreadsheet, map or their own notes and wants to check geographic order, long jumps, backtracking or rough travel load before booking. It is a second-pass route critic, not a live itinerary generator or timetable.
+
+For an agent-assisted audit, ask which stops and trip days the traveler wants checked. Call the public route audit API only when reliable coordinates for 2–12 stops are available. Explain that results use straight-line distance and simple transfer heuristics, and that official sources are needed for current schedules, prices and availability.
+
 ## Main task
 
 Paste or import the major stops from ChatGPT, Claude, Gemini, a blog, spreadsheet, Google Maps route or your own notes.
@@ -29,11 +35,12 @@ It does not verify current train times, road routes, flights, visas, border rule
 ## Human product
 
 - [Open RouteRiff](https://routeriff.vercel.app/)
-- [How the Route Sanity Score works](https://routeriff.vercel.app/how-route-score-works/)
-- [AI itinerary critic](https://routeriff.vercel.app/ai-itinerary-critic/)
-- [Japan itinerary checker](https://routeriff.vercel.app/japan-itinerary-checker/)
-- [China itinerary checker](https://routeriff.vercel.app/china-itinerary-checker/)
-- [Google Maps route import](https://routeriff.vercel.app/google-maps-route-to-itinerary/)
+- [How the Route Sanity Score works](https://routeriff.vercel.app/how-route-score-works)
+- [AI itinerary critic](https://routeriff.vercel.app/ai-itinerary-critic)
+- [Japan itinerary checker](https://routeriff.vercel.app/japan-itinerary-checker)
+- [China itinerary checker](https://routeriff.vercel.app/china-itinerary-checker)
+- [Google Maps route import](https://routeriff.vercel.app/google-maps-route-to-itinerary)
+- [Contact RouteRiff](https://routeriff.vercel.app/contact)
 
 ## Public agent interface
 
@@ -57,7 +64,7 @@ The API is read-only and returns a route-sanity score, verdict, distance, rough 
 
 Local text/CSV imports are read in the browser. Product analytics store coarse events rather than itinerary text. Some booking exits are affiliate links; affiliate economics do not alter the route-sanity score.
 
-Updated: 2026-10-07
+Updated: 2026-10-14
 `;
   res.setHeader("Content-Type","text/markdown; charset=utf-8");
   res.setHeader("Cache-Control","public, max-age=0, s-maxage=3600");
