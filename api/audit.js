@@ -1,4 +1,8 @@
 const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+function problem(res,status,title,detail,code){
+  res.setHeader("Content-Type","application/problem+json; charset=utf-8");
+  return res.status(status).send(JSON.stringify({type:"about:blank",title,status,detail,code}));
+}
 const km=(a,b)=>{
   const R=6371,A=(b.lat-a.lat)*Math.PI/180,B=(b.lon-a.lon)*Math.PI/180;
   const x=Math.sin(A/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(B/2)**2;
@@ -60,18 +64,21 @@ function bodyFromReq(req){
   return{points:parseQuery(req.query&&req.query.points),days:Number(req.query&&req.query.days)||0};
 }
 export default function handler(req,res){
-  if(!["GET","POST"].includes(req.method)) return res.status(405).json({ok:false,error:"method_not_allowed"});
+  if(!["GET","POST"].includes(req.method)){
+    res.setHeader("Allow","GET, POST");
+    return problem(res,405,"Method Not Allowed","Use GET or POST to audit a route.","method_not_allowed");
+  }
   try{
     const input=bodyFromReq(req);
     const points=input.points.map(normalizePoint);
-    if(points.length<2) return res.status(400).json({ok:false,error:"at_least_two_points_required"});
+    if(points.length<2) return problem(res,400,"Invalid route","Provide at least two valid route stops.","at_least_two_points_required");
     const days=clamp(Math.floor(input.days||0),0,365);
     const audit=analyze(points,days);
     res.setHeader("Access-Control-Allow-Origin","*");
     res.setHeader("Cache-Control","public, max-age=0, s-maxage=3600");
     return res.status(200).json({
       ok:true,
-      version:"2026-10-07",
+      version:"2026-10-14",
       route:{stops:points.map(p=>({name:p.name,lat:p.lat,lon:p.lon,country:p.country||undefined})),days:days||null},
       audit,
       limitations:[
@@ -79,9 +86,10 @@ export default function handler(req,res){
         "Does not verify schedules, borders, visas, weather, opening hours, prices or availability.",
         "Treat the verdict as a planning signal and verify critical travel details with official sources."
       ],
-      source_url:"https://routeriff.vercel.app/how-route-score-works/"
+      source_url:"https://routeriff.vercel.app/how-route-score-works"
     });
   }catch(err){
-    return res.status(400).json({ok:false,error:String(err&&err.message||err).slice(0,120)});
+    const code=String(err&&err.message||"invalid_route_input").replace(/[^a-z0-9_]/gi,"").slice(0,64)||"invalid_route_input";
+    return problem(res,400,"Invalid route input","Check that each stop has valid coordinates and that the route contains at least two stops.",code);
   }
 }
