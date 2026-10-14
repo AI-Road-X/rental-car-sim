@@ -39,7 +39,7 @@ RouteRiff pushes back.
 6. Before/after route order.
 
 ### CTA
-**Search “RouteRiff” — free, no account.**
+**Free route check:** https://routeriff.vercel.app/ai-itinerary-critic?src=youtube-short-ai-agreeable
 
 ### Source tag
 `?src=youtube-short-ai-agreeable`
@@ -69,7 +69,7 @@ It is not a timetable.
 It is the “does this trip shape make sense?” check.
 
 ### CTA
-**Search RouteRiff before you start booking.**
+**Check your pace:** https://routeriff.vercel.app/is-my-itinerary-too-rushed?src=youtube-short-travel-days
 
 ### Source tag
 `?src=youtube-short-travel-days`
@@ -99,7 +99,7 @@ It shows the route shape, catches the detour, and can test a simpler order while
 Then it creates a prompt you can paste back into your AI to rebuild the day-by-day itinerary.
 
 ### CTA
-**RouteRiff — AI planned it. RouteRiff pushes back.**
+**Check the Japan route:** https://routeriff.vercel.app/tokyo-hakone-kyoto-osaka-best-order?src=youtube-short-japan
 
 ### Source tag
 `?src=youtube-short-japan`
@@ -127,7 +127,7 @@ RouteRiff handles step three.
 It is a free itinerary critic, not another itinerary generator.
 
 ### CTA
-**Search RouteRiff.**
+**Check your route before booking:** https://routeriff.vercel.app/is-my-itinerary-too-rushed?src=youtube-short-before-booking
 
 ### Source tag
 `?src=youtube-short-before-booking`
@@ -139,7 +139,7 @@ It is a free itinerary critic, not another itinerary generator.
 - Do not say RouteRiff knows live schedules; it does not.
 - Do not say the score proves a trip is “good” or “bad”; call it a planning signal.
 - Do not use “AI travel planner” as the product category in the first sentence. Use **AI itinerary critic**, **sanity check**, or **second-pass checker**.
-- If a platform blocks clickable links, say **“Search RouteRiff”** on screen and in speech.
+- Where clickable external links are supported, use the matching direct page URL above. If links are not clickable, say **“Search RouteRiff”** on screen and in speech.
 - The primary success event is not views. It is `trip_built`.
 - Secondary events: `copy_fix_prompt`, `share_card`, `share_trip`, `remix_trip`, `affiliate_click`.
 

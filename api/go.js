@@ -7,6 +7,11 @@ const PARTNERS={
   aviasales:"https://aviasales.tpo.lu/I4Lm5ahp"
 };
 
+function problem(res,status,title,detail,code){
+  res.setHeader("Content-Type","application/problem+json; charset=utf-8");
+  return res.status(status).send(JSON.stringify({type:"about:blank",title,status,detail,code}));
+}
+
 const clean=(value,max)=>String(value||"").replace(/[\u0000-\u001f\u007f]/g,"").slice(0,max);
 
 async function storeEvent(row){
@@ -31,11 +36,14 @@ async function storeEvent(row){
 }
 
 export default async function handler(req,res){
-  if(req.method!=="GET") return res.status(405).end();
+  if(req.method!=="GET"){
+    res.setHeader("Allow","GET");
+    return problem(res,405,"Method Not Allowed","Use GET to follow a supported booking partner.","method_not_allowed");
+  }
 
   const partner=clean(req.query&&req.query.partner,24).toLowerCase();
   const destination=PARTNERS[partner];
-  if(!destination) return res.status(404).json({error:"unknown_partner"});
+  if(!destination) return problem(res,404,"Booking partner not found","Choose one of the supported booking partners listed in the RouteRiff interface.","unknown_partner");
 
   const row={
     event:"affiliate_click",
